@@ -1,0 +1,141 @@
+<!-- src/app/pages/home/home.component.html -->
+<div class="home-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1>Willkommen bei Team ADHS</h1>
+      <p class="hero-subtitle">Verein für erwachsene Betroffene, Angehörige, Expert•innen, Freund•innen und Interessierte</p>
+      <div class="hero-actions">
+        <a routerLink="/termine" class="btn btn-primary">
+          <mat-icon>event</mat-icon>
+          Nächste Termine
+        </a>
+        <a routerLink="/mitglied-werden" class="btn btn-outline">
+          <mat-icon>person_add</mat-icon>
+          Mitglied werden
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Target Groups Section -->
+  <section class="target-groups-section">
+    <div class="container">
+      <h2>Du bist hier richtig, wenn...</h2>
+      <div class="target-groups-grid">
+        <div class="target-group-item" *ngFor="let group of targetGroups">
+          <div class="bullet">•</div>
+          <div class="content">
+            <p>{{ group.description }}</p>
+            <div class="links" *ngIf="group.links">
+              <a *ngFor="let link of group.links"
+                 [routerLink]="link.route"
+                 class="group-link">
+                {{ link.text }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendar Teaser -->
+  <section class="calendar-section">
+    <div class="container">
+      <div class="calendar-card">
+        <mat-icon class="calendar-icon">event</mat-icon>
+        <h3>Schau in den Kalender und finde unsere nächsten Aktivitäten:</h3>
+        <p>Selbsthilfegruppen-Treffen, Online-Meetings, Treffen, Workshops und vieles mehr...</p>
+        <a routerLink="/termine" class="btn btn-primary">
+          <mat-icon>calendar_today</mat-icon>
+          Alle Termine ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Section -->
+  <section class="membership-section">
+    <div class="container">
+      <div class="membership-content">
+        <div class="membership-text">
+          <h3>Jedes Mitglied zählt, jedes Mitglied bedeutet Unterstützung für uns!</h3>
+          <p>Du bekommst als Vereinsmitglied Ermäßigungen bei unseren Veranstaltungen, Vorab-Einladungen zu Workshops und Seminaren und alle gewünschten Informationen zu Verein, Webseite und unseren Aktivitäten aus erster Hand.</p>
+          <p>Zudem freuen wir uns über engagierte Mitglieder, die unseren Verein auch aktiv unterstützen. Gib uns bitte im entsprechenden Infofeld Bescheid, wenn das für Dich möglich ist!</p>
+          <div class="membership-actions">
+            <a routerLink="/mitglied-werden" class="btn btn-primary">
+              <mat-icon>person_add</mat-icon>
+              Mitglied werden
+            </a>
+            <a routerLink="/aktiv-werden" class="btn btn-secondary">
+              <mat-icon>volunteer_activism</mat-icon>
+              Aktiv werden
+            </a>
+          </div>
+        </div>
+        <div class="membership-visual">
+          <mat-icon class="large-icon">groups</mat-icon>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section class="social-section">
+    <div class="container">
+      <h3>Wir sind nicht nur auf dieser Webseite, Du findest uns auch auf sozialen Medien:</h3>
+      <div class="social-grid">
+        <div class="social-item" *ngFor="let social of socialLinks">
+          <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-link">
+            <mat-icon>{{ social.icon }}</mat-icon>
+            <div class="social-content">
+              <h4>{{ social.name }}</h4>
+              <p>{{ social.description }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="social-cta">
+        <p><strong>Schau rein!</strong></p>
+        <p>Mehr Infos findest Du <a routerLink="/die-selbsthilfegruppe">hier</a>!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners-section">
+    <div class="container">
+      <h3>Unsere Partner</h3>
+      <div class="partners-grid">
+        <div class="partner-card" *ngFor="let partner of partners">
+          <h4>{{ partner.name }}</h4>
+          <p>{{ partner.description }}</p>
+          <a *ngIf="partner.website"
+             [href]="partner.website"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-outline btn-small">
+            <mat-icon>open_in_new</mat-icon>
+            Website besuchen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Section -->
+  <section class="support-section">
+    <div class="container">
+      <div class="support-card">
+        <h3>Unterstütze unsere Arbeit</h3>
+        <p>Wir von Team ADHS machen unsere Arbeit ehrenamtlich neben unseren sonstigen Verpflichtungen. Bitte unterstütze unsere Vereinsarbeit mit einer Spende!</p>
+        <p><strong>Jeder Euro zählt!</strong></p>
+        <a routerLink="/spenden" class="btn btn-accent">
+          <mat-icon>favorite</mat-icon>
+          Jetzt spenden
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

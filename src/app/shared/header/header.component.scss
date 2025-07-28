@@ -1,0 +1,184 @@
+.main-header {
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-light);
+  position: relative;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar {
+  padding: 0.75rem 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.nav-brand {
+  .logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .logo-subtitle {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-top: -0.125rem;
+    }
+  }
+}
+
+// Desktop Navigation
+.desktop-menu {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+  align-items: center;
+
+  @media (min-width: 769px) {
+    display: flex;
+  }
+
+  li {
+    a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+
+      &.active {
+        color: var(--primary-color);
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -0.75rem;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background-color: var(--primary-color);
+        }
+      }
+
+      &.btn {
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius-md);
+        background-color: var(--primary-color);
+        color: #333;
+
+        &::after {
+          display: none;
+        }
+
+        &:hover {
+          background-color: var(--primary-dark);
+        }
+      }
+    }
+  }
+}
+
+// Mobile Menu Button
+.mobile-menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+
+  .hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    margin: 2px 0;
+    transition: all 0.3s ease;
+
+    &:first-child.active {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    &:nth-child(2).active {
+      opacity: 0;
+    }
+
+    &:last-child.active {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+  }
+}
+
+// Mobile Menu - GANZ EINFACH
+.mobile-menu {
+  background-color: white;
+  border-top: 1px solid #eee;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+
+  .mobile-nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+
+    li {
+      border-bottom: 1px solid #eee;
+
+      a {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: #333;
+        text-decoration: none;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+
+        &.mobile-btn {
+          background-color: var(--primary-color);
+          color: #333;
+          margin: 1rem;
+          border-radius: 8px;
+          text-align: center;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
