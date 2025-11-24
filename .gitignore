@@ -44,3 +44,51 @@ Thumbs.db
 /.vs/team-adhs-website/v17
 /.vs/team-adhs-website/CopilotIndices/17.12.53.23981
 /.vs
+# Angular
+.angular/
+node_modules/
+dist/
+# Angular (im Website Ordner)
+Website/.angular/
+Website/node_modules/
+Website/dist/
+Website/.vscode/
+Website/*.log
+Website/npm-debug.log*
+Website/yarn-error.log*
+
+# C# API
+TeamAdhsApi/bin/
+TeamAdhsApi/obj/
+TeamAdhsApi/.vs/
+TeamAdhsApi/*.user
+TeamAdhsApi/*.suo
+TeamAdhsApi/*.cache
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+
+# Sensitive data
+appsettings.Development.json
+appsettings.*.json
+!appsettings.json
+*.env
+*.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
