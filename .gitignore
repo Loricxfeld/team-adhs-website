@@ -95,3 +95,7 @@ desktop.ini
 
 **/bin/
 **/obj/
+/WebApi/obj/Debug/net9.0/WebApi.AssemblyInfo.cs
+/WebApi/obj/Debug/net9.0/WebApi.AssemblyInfoInputs.cache
+/WebApi/obj/Release/net9.0/WebApi.AssemblyInfo.cs
+/WebApi/obj/Release/net9.0/WebApi.AssemblyInfoInputs.cache
