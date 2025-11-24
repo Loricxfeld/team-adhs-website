@@ -148,11 +148,7 @@
               box-shadow: 0 3px 8px rgba(255, 152, 0, 0.3);
             }
 
-            &:before {
-              content: '→';
-              margin-right: 0.5rem;
-              font-weight: bold;
-            }
+            
           }
         }
       }
@@ -406,11 +402,7 @@
           box-shadow: 0 3px 8px rgba(255, 152, 0, 0.3);
         }
 
-        &:after {
-          content: '→';
-          margin-left: 0.5rem;
-          font-weight: bold;
-        }
+      
       }
     }
   }
