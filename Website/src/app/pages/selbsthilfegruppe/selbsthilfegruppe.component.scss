@@ -1,0 +1,547 @@
+/* src/app/pages/selbsthilfegruppe/selbsthilfegruppe.component.scss */
+
+.selbsthilfegruppe-page {
+  background-color: white;
+  min-height: 100vh;
+}
+
+// Contact Modal
+.contact-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .contact-modal {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    .contact-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+
+      h3 {
+        margin: 0;
+        color: var(--primary-color);
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #999;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+  }
+}
+
+// Page Header
+.page-header {
+  padding: 2rem 0;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+
+  h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: normal;
+  }
+
+  p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+}
+
+// Benefits Section
+.benefits-section {
+  padding: 3rem 0;
+  background-color: #f9f9f9;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+
+    .benefit-card {
+      text-align: center;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      h3 {
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
+
+      p {
+        color: #666;
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Groups Section - Events List Styling (wie auf Termine-Seite)
+.groups-section {
+  padding: 3rem 0;
+
+  h2 {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  .events-list {
+    .event-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #eee;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .event-date-simple {
+        text-align: center;
+        min-width: 60px;
+
+        .date-day {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: var(--primary-color);
+          line-height: 1;
+        }
+
+        .date-month {
+          font-size: 0.9rem;
+          color: #666;
+          text-transform: uppercase;
+        }
+      }
+
+      .event-content-simple {
+        flex: 1;
+
+        h3 {
+          font-size: 1.2rem;
+          color: #333;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+        }
+
+        .event-meta {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 0.75rem;
+          flex-wrap: wrap;
+
+          .event-time {
+            color: #666;
+            font-size: 0.9rem;
+          }
+
+          .event-type-simple {
+            background-color: var(--primary-color);
+            color: #333;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+
+            &.group-type-online {
+              background-color: var(--online-color);
+              color: white;
+            }
+
+            &.group-type-presence {
+              background-color: var(--accent-color);
+              color: white;
+            }
+
+            &.group-type-hybrid {
+              background-color: var(--primary-color);
+              color: #333;
+            }
+          }
+        }
+
+        .event-location,
+        .event-moderator {
+          margin-bottom: 0.5rem;
+          font-size: 0.95rem;
+          color: #555;
+
+          strong {
+            color: #333;
+          }
+        }
+
+        .event-description-simple {
+          color: #666;
+          line-height: 1.5;
+          margin-bottom: 1rem;
+          font-size: 0.95rem;
+        }
+
+        .event-actions-simple {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          flex-wrap: wrap;
+
+          .zoom-link,
+          .contact-link {
+            color: var(--accent-color);
+            text-decoration: underline;
+            font-weight: 500;
+
+            &:hover {
+              color: var(--accent-dark);
+            }
+          }
+
+          .registration-note {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #ffeaa7;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Info Section
+.info-section {
+  padding: 3rem 0;
+  background-color: #f9f9f9;
+
+  .info-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .info-steps {
+      .step {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+
+        .step-number {
+          background-color: var(--primary-color);
+          color: #333;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          flex-shrink: 0;
+        }
+
+        .step-content {
+          h4 {
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+          }
+
+          p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .info-highlight {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+      h3 {
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+          margin-bottom: 0.75rem;
+          padding-left: 1.5rem;
+          position: relative;
+          color: #555;
+          line-height: 1.5;
+
+          &:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--online-color);
+            font-weight: bold;
+          }
+
+          strong {
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+}
+
+// FAQ Section
+.faq-section {
+  padding: 3rem 0;
+
+  h2 {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  .faq-filter {
+    margin-bottom: 2rem;
+
+    label {
+      margin-right: 1rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    select {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+    }
+  }
+
+  .faq-list {
+    .faq-item {
+      background-color: #f9f9f9;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      padding: 1.5rem;
+
+      .faq-question {
+        color: var(--accent-color);
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .faq-answer {
+        color: #666;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// Contact CTA
+.contact-cta-section {
+  padding: 3rem 0;
+  background-color: #f9f9f9;
+
+  .cta-card {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+    h3 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+// Buttons
+.btn-primary, .btn-secondary, .btn-outline {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #333;
+
+  &:hover {
+    background-color: var(--primary-dark);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--accent-color);
+  color: white;
+
+  &:hover {
+    background-color: var(--accent-dark);
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+
+  &:hover {
+    background-color: var(--accent-color);
+    color: white;
+  }
+}
+
+// Container
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
+}
+
+// Form Styles
+.contact-form {
+  .form-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .events-list .event-item {
+    flex-direction: column;
+    gap: 1rem;
+
+    .event-date-simple {
+      align-self: flex-start;
+    }
+  }
+
+  .info-content {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

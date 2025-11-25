@@ -1,0 +1,318 @@
+// src/styles.scss - Haupttheme für Team ADHS Website
+
+@use '@angular/material' as mat;
+
+// Schriftarten importieren
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+// Include the common styles for Angular Material
+@include mat.core();
+
+// Team ADHS Farbpalette definieren - Orange-Gelb Theme
+$team-adhs-primary: ( 50: #fff8e1, 100: #ffecb3, 200: #ffe082, 300: #ffd54f, 400: #ffca28, 500: #ffc107, // Hauptgelb (ähnlich Original)
+600: #ffb300, 700: #ffa000, 800: #ff8f00, 900: #ff6f00, A100: #ffff8d, A200: #ffff00, A400: #ffea00, A700: #ffd600, contrast: ( 50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: rgba(black, 0.87), 600: rgba(black, 0.87), 700: rgba(black, 0.87), 800: white, 900: white, A100: rgba(black, 0.87), A200: rgba(black, 0.87), A400: rgba(black, 0.87), A700: rgba(black, 0.87), ) );
+
+$team-adhs-accent: ( 50: #fff3e0, 100: #ffe0b2, 200: #ffcc80, 300: #ffb74d, 400: #ffa726, 500: #ff9800, // Orange für Akzente
+600: #fb8c00, 700: #f57c00, 800: #ef6c00, 900: #e65100, A100: #ffd180, A200: #ffab40, A400: #ff9100, A700: #ff6d00, contrast: ( 50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: rgba(black, 0.87), 600: rgba(black, 0.87), 700: white, 800: white, 900: white, A100: rgba(black, 0.87), A200: rgba(black, 0.87), A400: rgba(black, 0.87), A700: rgba(black, 0.87), ) );
+
+$team-adhs-warn: ( 50: #ffebee, 100: #ffcdd2, 200: #ef9a9a, 300: #e57373, 400: #ef5350, 500: #f44336, // Rot für Warnungen
+600: #e53935, 700: #d32f2f, 800: #c62828, 900: #b71c1c, A100: #ff8a80, A200: #ff5252, A400: #ff1744, A700: #d50000, contrast: ( 50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: white, 600: white, 700: white, 800: white, 900: white, A100: rgba(black, 0.87), A200: white, A400: white, A700: white, ) );
+
+// Typografie definieren
+$team-adhs-typography: mat.define-typography-config( $font-family: '"Inter", "Helvetica Neue", sans-serif', $headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em), $headline-2: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em), $headline-3: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em), $headline-4: mat.define-typography-level(34px, 40px, 400), $headline-5: mat.define-typography-level(24px, 32px, 500), $headline-6: mat.define-typography-level(20px, 32px, 500), $subtitle-1: mat.define-typography-level(16px, 28px, 400), $subtitle-2: mat.define-typography-level(14px, 22px, 500), $body-1: mat.define-typography-level(16px, 24px, 400), $body-2: mat.define-typography-level(14px, 20px, 400), $caption: mat.define-typography-level(12px, 20px, 400), $button: mat.define-typography-level(14px, 14px, 500), $overline: mat.define-typography-level(10px, 16px, 400), );
+
+// Themes erstellen
+$team-adhs-primary-palette: mat.define-palette($team-adhs-primary);
+$team-adhs-accent-palette: mat.define-palette($team-adhs-accent);
+$team-adhs-warn-palette: mat.define-palette($team-adhs-warn);
+
+// Light Theme
+$team-adhs-light-theme: mat.define-light-theme(( color: ( primary: $team-adhs-primary-palette, accent: $team-adhs-accent-palette, warn: $team-adhs-warn-palette, ), typography: $team-adhs-typography, density: 0, ));
+
+// Dark Theme (für später)
+$team-adhs-dark-theme: mat.define-dark-theme(( color: ( primary: $team-adhs-primary-palette, accent: $team-adhs-accent-palette, warn: $team-adhs-warn-palette, ), typography: $team-adhs-typography, density: 0, ));
+
+// Theme anwenden
+@include mat.all-component-themes($team-adhs-light-theme);
+
+// Custom CSS Variablen für eigene Komponenten
+:root {
+  // Hauptfarben - Orange-Gelb Theme
+  --primary-color: #ffc107; // Hauptgelb
+  --primary-light: #fff350; // Helles Gelb
+  --primary-dark: #ff8f00; // Dunkles Orange-Gelb
+  --accent-color: #ff9800; // Orange
+  --accent-light: #ffcc80; // Helles Orange
+  --accent-dark: #e65100; // Dunkles Orange
+  --warn-color: #f44336;
+  // Neutrale Farben
+  --background-color: #fafafa;
+  --surface-color: #ffffff;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --border-color: #e0e0e0;
+  --divider-color: #eeeeee;
+  // ADHS-spezifische Farben - warme Palette
+  --online-color: #4caf50; // Grün für Online-Events
+  --presence-color: #ff9800; // Orange für Präsenz-Events
+  --workshop-color: #ff5722; // Rot-Orange für Workshops
+  --audhs-color: #9c27b0; // Lila für AuDHS-Events
+  --partner-color: #607d8b; // Blau-Grau für Partner
+  // Schatten
+  --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-medium: 0 4px 8px rgba(0,0,0,0.12);
+  --shadow-heavy: 0 8px 16px rgba(0,0,0,0.15);
+  // Abstände
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  // Border Radius
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+}
+
+// Global Styles
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+}
+
+// Accessibility Improvements
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Focus Styles für bessere Accessibility
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+// Button Styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.btn-secondary {
+    background-color: var(--accent-color);
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+
+    &:hover:not(:disabled) {
+      background-color: var(--primary-color);
+      color: white;
+    }
+  }
+}
+
+// Card Styles
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-light);
+  padding: var(--spacing-lg);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-medium);
+  }
+}
+
+// Container und Layout
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+
+  @media (min-width: 768px) {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+.section {
+  padding: var(--spacing-xxl) 0;
+
+  &.section-hero {
+    padding: calc(var(--spacing-xxl) * 2) 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+  }
+}
+
+// Event-spezifische Styles
+.event-type-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  &.selbsthilfegruppe {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  &.online-meeting {
+    background-color: var(--online-color);
+    color: white;
+  }
+
+  &.workshop {
+    background-color: var(--workshop-color);
+    color: white;
+  }
+
+  &.audhs {
+    background-color: var(--audhs-color);
+    color: white;
+  }
+}
+
+// Responsive Typography
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+}
+
+// Utility Classes
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-1 {
+  margin-top: var(--spacing-xs);
+}
+
+.mt-2 {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-3 {
+  margin-top: var(--spacing-md);
+}
+
+.mt-4 {
+  margin-top: var(--spacing-lg);
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.mb-2 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-3 {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-4 {
+  margin-bottom: var(--spacing-lg);
+}
+
+// Dark Mode Support (für später)
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    @include mat.all-component-colors($team-adhs-dark-theme);
+
+    :root {
+      --background-color: #121212;
+      --surface-color: #1e1e1e;
+      --text-primary: #ffffff;
+      --text-secondary: #b3b3b3;
+      --border-color: #333333;
+      --divider-color: #2c2c2c;
+    }
+  }
+}
