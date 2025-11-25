@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
 using Microsoft.AspNetCore.Http;
+using WebApi.Models.Entities;
 
 
 namespace WebApi.Controllers
@@ -9,7 +9,7 @@ namespace WebApi.Controllers
   [Route("api/[controller]")]
   public class Contact : ControllerBase
   {
-    [HttpPost]
+    [HttpPost (nameof(SubmitContactMessage))]
 
     public IActionResult SubmitContactMessage([FromBody] ContactMessage contactMessage)
     {
@@ -22,5 +22,21 @@ namespace WebApi.Controllers
       return Ok(new { message = "Kontaktanfrage erfolgreich übermittelt.", data = contactMessage });
     }
 
+
+    [HttpGet (nameof(Persons))]
+
+    public ActionResult<string> Persons()
+    {
+      return Ok();
+    }
+
+
+    [HttpPost(nameof(membership))]
+
+
+    public IActionResult membership(Member member)
+    {
+      return Ok();
+    }
   }
 }

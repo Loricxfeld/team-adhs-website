@@ -10,7 +10,7 @@ namespace WebApi.Controllers
 
     [HttpGet(nameof(GetTermine))]
 
-    public IActionResult GetTermine()
+    public ActionResult<Termine> GetTermine()
     {
       // Hier würden normalerweise die Termine aus einer Datenbank oder einem anderen Speicher abgerufen werden.
       var termine = new[]

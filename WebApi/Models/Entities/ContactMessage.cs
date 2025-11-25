@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Models
+namespace WebApi.Models.Entities
 {
   public class ContactMessage
   {
