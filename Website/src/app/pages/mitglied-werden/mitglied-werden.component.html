@@ -1,0 +1,316 @@
+<!-- src/app/pages/mitglied-werden/mitglied-werden.component.html -->
+<div class="mitglied-werden-page">
+
+  <!-- Success Message -->
+  <div *ngIf="isSubmitted" class="success-overlay">
+    <div class="success-message">
+      <div class="success-icon">✓</div>
+      <h2>Vielen Dank für Ihre Anmeldung!</h2>
+      <p>Wir haben Ihre Mitgliedschaftsanfrage erhalten und werden uns in Kürze bei Ihnen melden.</p>
+      <button (click)="resetSubmittedState()" class="btn-primary">
+        Neue Anmeldung
+      </button>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Mitglied werden</h1>
+      <p>Jedes Mitglied zählt, jedes Mitglied bedeutet Unterstützung für uns!</p>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2>Deine Vorteile als Vereinsmitglied</h2>
+      <div class="benefits-grid">
+        <div *ngFor="let benefit of membershipBenefits" class="benefit-item">
+        <!--  <div class="benefit-icon">{{ benefit.icon }}</div>-->
+          <h3>{{ benefit.title }}</h3>
+          <p>{{ benefit.description }}</p>
+        </div>
+      </div>
+
+      <div class="engagement-note">
+        <p><strong>Zudem freuen wir uns über engagierte Mitglieder, die unseren Verein auch aktiv unterstützen.</strong></p>
+        <p>Gib uns bitte im entsprechenden Feld Bescheid, wenn das für Dich möglich ist!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Form -->
+  <section class="form-section">
+    <div class="container">
+      <form (ngSubmit)="onSubmit()" #membershipForm="ngForm" class="membership-form">
+
+        <!-- Personal Information -->
+        <div class="form-section-group">
+          <h3>Persönliche Daten</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">Vorname *</label>
+              <input type="text"
+                     id="firstName"
+                     [(ngModel)]="member.firstName"
+                     name="firstName"
+                     required
+                     [class.error]="hasError('firstName')"
+                     placeholder="Dein Vorname">
+              <div *ngIf="hasError('firstName')" class="error-message">
+                {{ getError('firstName') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Nachname *</label>
+              <input type="text"
+                     id="lastName"
+                     [(ngModel)]="member.lastName"
+                     name="lastName"
+                     required
+                     [class.error]="hasError('lastName')"
+                     placeholder="Dein Nachname">
+              <div *ngIf="hasError('lastName')" class="error-message">
+                {{ getError('lastName') }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input type="email"
+                     id="email"
+                     [(ngModel)]="member.email"
+                     name="email"
+                     required
+                     [class.error]="hasError('email')"
+                     placeholder="deine@email.at">
+              <div *ngIf="hasError('email')" class="error-message">
+                {{ getError('email') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefon (optional)</label>
+              <input type="tel"
+                     id="phone"
+                     [(ngModel)]="member.phone"
+                     name="phone"
+                     placeholder="+43 123 456789">
+            </div>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="form-section-group">
+          <h3>Adresse</h3>
+
+          <div class="form-group">
+            <label for="street">Straße und Hausnummer *</label>
+            <input type="text"
+                   id="street"
+                   [(ngModel)]="member.address.street"
+                   name="street"
+                   required
+                   [class.error]="hasError('street')"
+                   placeholder="Musterstraße 123">
+            <div *ngIf="hasError('street')" class="error-message">
+              {{ getError('street') }}
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="postalCode">PLZ *</label>
+              <input type="text"
+                     id="postalCode"
+                     [(ngModel)]="member.address.postalCode"
+                     name="postalCode"
+                     required
+                     [class.error]="hasError('postalCode')"
+                     placeholder="1010">
+              <div *ngIf="hasError('postalCode')" class="error-message">
+                {{ getError('postalCode') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="city">Ort *</label>
+              <input type="text"
+                     id="city"
+                     [(ngModel)]="member.address.city"
+                     name="city"
+                     required
+                     [class.error]="hasError('city')"
+                     placeholder="Wien">
+              <div *ngIf="hasError('city')" class="error-message">
+                {{ getError('city') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="country">Land</label>
+              <select id="country" [(ngModel)]="member.address.country" name="country">
+                <option value="Österreich">Österreich</option>
+                <option value="Deutschland">Deutschland</option>
+                <option value="Schweiz">Schweiz</option>
+                <option value="Andere">Andere</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Membership Type -->
+        <div class="form-section-group">
+          <h3>Art der Mitgliedschaft</h3>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio"
+                     [(ngModel)]="member.membershipType"
+                     name="membershipType"
+                     value="erwachsene">
+              <span class="radio-label">Erwachsene/r mit ADHS</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio"
+                     [(ngModel)]="member.membershipType"
+                     name="membershipType"
+                     value="studierende">
+              <span class="radio-label">Studierend mit ADHS</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio"
+                     [(ngModel)]="member.membershipType"
+                     name="membershipType"
+                     value="angehoerige">
+              <span class="radio-label">Angehörige/r</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="form-section-group">
+          <h3>Interessensgebiete</h3>
+          <p class="section-description">Welche Angebote interessieren Dich? (Mehrfachauswahl möglich)</p>
+          <div class="checkbox-grid">
+            <label *ngFor="let interest of interestOptions" class="checkbox-option">
+              <input type="checkbox"
+                     [checked]="isInterestSelected(interest)"
+                  
+                     >
+              <span class="checkbox-label">{{ interest }}</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Active Support -->
+        <div class="form-section-group">
+          <h3>Aktive Unterstützung</h3>
+          <div class="support-question">
+            <label class="checkbox-option">
+              <input type="checkbox"
+                     [(ngModel)]="member.activeSupport"
+                     name="activeSupport">
+              <span class="checkbox-label">
+                <strong>Ja, ich möchte den Verein gerne aktiv unterstützen!</strong>
+              </span>
+            </label>
+          </div>
+
+          <div *ngIf="member.activeSupport" class="support-areas">
+            <p>In welchen Bereichen könntest Du Dir eine Unterstützung vorstellen?</p>
+            <div class="checkbox-grid">
+              <label *ngFor="let area of supportAreaOptions" class="checkbox-option">
+                <input type="checkbox"
+                       [checked]="isSupportAreaSelected(area)"
+                      
+                       >
+                <span class="checkbox-label">{{ area }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="form-section-group">
+          <h3>Zusätzliche Informationen</h3>
+          <div class="form-group">
+            <label for="additionalInfo">Möchtest Du uns noch etwas mitteilen?</label>
+            <textarea id="additionalInfo"
+                      [(ngModel)]="member.additionalInfo"
+                      name="additionalInfo"
+                      rows="4"
+                      placeholder="Hier ist Platz für Deine Anmerkungen, Fragen oder Wünsche..."></textarea>
+          </div>
+        </div>
+
+        <!-- Newsletter and Data Protection -->
+        <div class="form-section-group">
+          <h3>Newsletter und Datenschutz</h3>
+
+          <div class="checkbox-list">
+            <label class="checkbox-option">
+              <input type="checkbox"
+                     [(ngModel)]="member.newsletter"
+                     name="newsletter">
+              <span class="checkbox-label">
+                Ja, ich möchte den Newsletter erhalten und über Vereinsaktivitäten informiert werden.
+              </span>
+            </label>
+
+            <label class="checkbox-option">
+              <input type="checkbox"
+                     [(ngModel)]="member.dataProtection"
+                     name="dataProtection"
+                     required
+                     [class.error]="hasError('dataProtection')">
+              <span class="checkbox-label">
+                <strong>Ich stimme der <a routerLink="/datenschutz" target="_blank">Datenschutzerklärung</a> zu. *</strong>
+              </span>
+            </label>
+            <div *ngIf="hasError('dataProtection')" class="error-message">
+              {{ getError('dataProtection') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-submit">
+          <div *ngIf="hasError('submit')" class="error-message submit-error">
+            {{ getError('submit') }}
+          </div>
+
+          <button type="submit"
+                  class="btn-primary submit-btn"
+                  [disabled]="isSubmitting || membershipForm.invalid">
+            <span *ngIf="!isSubmitting">Mitgliedschaft beantragen</span>
+            <span *ngIf="isSubmitting">Wird gesendet...</span>
+          </button>
+
+          <p class="form-note">
+            Nach dem Absenden erhältst Du eine Bestätigung per E-Mail.
+            Wir werden uns zeitnah bei Dir melden.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Info -->
+  <section class="contact-info-section">
+    <div class="container">
+      <div class="contact-card">
+        <h3>Fragen zur Mitgliedschaft?</h3>
+        <p>Bei Fragen zur Mitgliedschaft oder unserem Verein kontaktiere uns gerne!</p>
+        <div class="contact-details">
+          <p><strong>E-Mail:</strong> <a href="mailto:kontakt@team-adhs.at">kontakt@team-adhs.at</a></p>
+          <p><strong>Adresse:</strong> Verein Team ADHS, Wien, Österreich</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

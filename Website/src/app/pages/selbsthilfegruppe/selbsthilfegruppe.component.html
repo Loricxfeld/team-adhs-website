@@ -1,0 +1,207 @@
+<!-- src/app/pages/selbsthilfegruppe/selbsthilfegruppe.component.html -->
+<div class="selbsthilfegruppe-page">
+
+  <!-- Contact Form Overlay -->
+  <div *ngIf="showContactForm" class="contact-overlay">
+    <div class="contact-modal">
+      <div class="contact-header">
+        <h3>Informationen anfragen</h3>
+        <button (click)="closeContactForm()" class="close-btn">&times;</button>
+      </div>
+      <form (ngSubmit)="submitContactForm()" class="contact-form">
+        <div class="form-group">
+          <label for="contact-email">E-Mail-Adresse *</label>
+          <input type="email"
+                 id="contact-email"
+                 [(ngModel)]="contactForm.email"
+                 name="email"
+                 required
+                 placeholder="ihre@email.at">
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Nachricht (optional)</label>
+          <textarea id="contact-message"
+                    [(ngModel)]="contactForm.message"
+                    name="message"
+                    rows="3"
+                    placeholder="Haben Sie spezielle Fragen?"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" (click)="closeContactForm()" class="btn-secondary">
+            Abbrechen
+          </button>
+          <button type="submit"
+                  class="btn-primary"
+                  [disabled]="isSubmittingContact || !contactForm.email.trim()">
+            {{ isSubmittingContact ? 'Wird gesendet...' : 'Informationen anfordern' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Die Selbsthilfegruppe</h1>
+      <p>Unsere Selbsthilfegruppen bieten einen sicheren Raum für Austausch, gegenseitige Unterstützung und gemeinsames Lernen. Hier findest Du Menschen, die Deine Erfahrungen teilen und verstehen.</p>
+    </div>
+  </section>
+
+  <!-- Group Benefits -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2>Vorteile von Selbsthilfegruppen</h2>
+      <div class="benefits-grid">
+        <div *ngFor="let benefit of groupBenefits" class="benefit-card">
+          <h3>{{ benefit.title }}</h3>
+          <p>{{ benefit.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Available Groups - einheitliche Darstellung wie Termine-Seite -->
+  <section class="groups-section">
+    <div class="container">
+      <h2>Unsere Selbsthilfegruppen</h2>
+      <div class="events-list">
+        <div *ngFor="let group of supportGroups" class="event-item">
+          <div class="event-date-simple">
+            <div class="date-day">{{ group.nextMeeting | date:'dd' }}</div>
+            <div class="date-month">{{ group.nextMeeting | date:'MMM' }}</div>
+          </div>
+
+          <div class="event-content-simple">
+            <h3>{{ group.name }}</h3>
+            <div class="event-meta">
+              <span class="event-time">{{ group.schedule }}</span>
+              <span class="event-type-simple" [class]="getGroupTypeClass(group.type)">{{ getGroupTypeLabel(group.type) }}</span>
+            </div>
+
+            <div class="event-location" *ngIf="group.type !== 'online'">
+              <strong>Ort:</strong> {{ group.location }}
+            </div>
+            <div class="event-location" *ngIf="group.type === 'online'">
+              <strong>Online via Zoom</strong>
+            </div>
+
+
+            <div class="event-moderator">
+              <strong>Moderation:</strong> {{ group.moderator }}
+            </div>
+
+            <div class="event-moderator">
+              <strong>Zielgruppe:</strong> {{ group.targetGroup }}
+            </div>
+
+            <p class="event-description-simple">{{ group.description }}</p>
+
+            <div class="event-actions-simple">
+              <a *ngIf="group.type === 'online' && group.zoomLink" [href]="group.zoomLink" target="_blank" class="zoom-link">
+                Zoom-Link
+              </a>
+              <span *ngIf="group.requirements?.includes('ANMELDUNG erforderlich')" class="registration-note">
+                ANMELDUNG erforderlich - kontakt@team-adhs.at
+              </span>
+              <a href="mailto:kontakt@team-adhs.at?subject=Frage zu {{ group.name }}" class="contact-link">
+                Kontakt
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- General Information -->
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <div class="info-text">
+          <h2>So funktioniert's</h2>
+          <div class="info-steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Gruppe auswählen</h4>
+                <p>Wähle die passende Selbsthilfegruppe für Deine Situation aus.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Einfach teilnehmen</h4>
+                <p>Die meisten Gruppen sind offen - komm einfach zum nächsten Termin.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Austauschen und lernen</h4>
+                <p>Teile Deine Erfahrungen und lerne von anderen Betroffenen.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-highlight">
+          <h3>Wichtige Grundsätze</h3>
+          <ul>
+            <li><strong>Vertraulichkeit:</strong> Alles was besprochen wird, bleibt in der Gruppe</li>
+            <li><strong>Respekt:</strong> Wir begegnen uns mit Respekt und ohne Vorurteile</li>
+            <li><strong>Freiwilligkeit:</strong> Niemand muss etwas erzählen, was er nicht möchte</li>
+            <li><strong>Gegenseitigkeit:</strong> Jeder kann geben und nehmen</li>
+            <li><strong>Kein Therapieersatz:</strong> Wir ergänzen professionelle Hilfe</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Häufig gestellte Fragen</h2>
+
+      <div class="faq-filter">
+        <label for="faq-category">Kategorie:</label>
+        <select id="faq-category"
+                [(ngModel)]="selectedFaqCategory"
+                (ngModelChange)="onFaqCategoryChange()">
+          <option *ngFor="let category of faqCategories" [value]="category.value">
+            {{ category.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="faq-list">
+        <div *ngFor="let faq of faqs" class="faq-item">
+          <h4 class="faq-question">{{ faq.question }}</h4>
+          <p class="faq-answer">{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="contact-cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h3>Noch Fragen?</h3>
+        <p>Zögere nicht, uns zu kontaktieren! Wir helfen Dir gerne bei der Auswahl der passenden Gruppe oder beantworten Deine Fragen.</p>
+        <div class="cta-actions">
+          <a href="mailto:kontakt@team-adhs.at" class="btn-primary">
+            E-Mail senden
+          </a>
+          <button (click)="openContactForm()" class="btn-secondary">
+            Infos anfordern
+          </button>
+          <a routerLink="/termine" class="btn-outline">
+            Alle Termine
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

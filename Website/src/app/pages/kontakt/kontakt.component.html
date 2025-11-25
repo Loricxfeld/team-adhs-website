@@ -1,0 +1,316 @@
+<!-- src/app/pages/kontakt/kontakt.component.html -->
+<div class="kontakt-page">
+
+  <!-- Success Message -->
+  <div *ngIf="isSubmitted" class="success-overlay">
+    <div class="success-message">
+      <div class="success-icon">✓</div>
+      <h2>Nachricht gesendet!</h2>
+      <p>Vielen Dank für Ihre Nachricht. Wir werden uns binnen 2-3 Werktagen bei Ihnen melden.</p>
+      <button (click)="resetSubmittedState()" class="btn-primary">
+        Neue Nachricht
+      </button>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Kontakt</h1>
+      <p>Haben Sie Fragen zu ADHS, unserem Verein oder unseren Angeboten? Wir sind gerne für Sie da! Nutzen Sie das Kontaktformular oder kontaktieren Sie uns direkt.</p>
+    </div>
+  </section>
+
+  <!-- Quick Contact Options -->
+  <section class="quick-contact-section">
+    <div class="container">
+      <h2>Schneller Kontakt</h2>
+      <div class="quick-contact-grid">
+        <div class="contact-option">
+          <div class="contact-icon">📧</div>
+          <h3>E-Mail</h3>
+          <p>kontakt@team-adhs.at</p>
+          <div class="contact-actions">
+            <a href="mailto:kontakt@team-adhs.at" class="btn-primary">E-Mail öffnen</a>
+            <button (click)="copyEmailToClipboard()" class="btn-outline">Kopieren</button>
+          </div>
+        </div>
+
+        <div class="contact-option">
+          <div class="contact-icon">👥</div>
+          <h3>Social Media</h3>
+          <p>Folgen Sie uns auf unseren Kanälen</p>
+          <div class="social-buttons">
+            <button (click)="openSocialLink('facebook')" class="social-btn facebook">Facebook</button>
+            <button (click)="openSocialLink('instagram')" class="social-btn instagram">Instagram</button>
+            <button (click)="openSocialLink('discord')" class="social-btn discord">Discord</button>
+          </div>
+        </div>
+
+        <div class="contact-option">
+          <div class="contact-icon">📝</div>
+          <h3>Kontaktformular</h3>
+          <p>Strukturierte Anfrage stellen</p>
+          <button (click)="scrollToForm()" class="btn-secondary">Zum Formular</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Persons -->
+  <section class="contact-persons-section">
+    <div class="container">
+      <h2>Ansprechpersonen</h2>
+      <div class="persons-grid">
+        <div *ngFor="let person of contactPersons" class="person-card">
+          <div class="person-header">
+            <div class="person-avatar">{{ person.name.charAt(0) }}</div>
+            <div class="person-info">
+              <h3>{{ person.name }}</h3>
+              <p class="person-role">{{ person.role }}</p>
+            </div>
+          </div>
+
+          <div class="person-content">
+            <div class="person-responsibilities">
+              <h4>Zuständig für:</h4>
+              <ul>
+                <li *ngFor="let responsibility of person.responsibleFor">{{ responsibility }}</li>
+              </ul>
+            </div>
+
+            <div class="person-contact">
+              <p><strong>E-Mail:</strong> {{ person.email }}</p>
+              <p *ngIf="person.phone"><strong>Telefon:</strong> {{ person.phone }}</p>
+              <p *ngIf="person.availability"><strong>Erreichbarkeit:</strong> {{ person.availability }}</p>
+            </div>
+          </div>
+
+          <div class="person-actions">
+            <a [href]="'mailto:' + person.email" class="btn-primary">E-Mail senden</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact-form" class="contact-form-section">
+    <div class="container">
+      <h2>Kontaktformular</h2>
+      <p class="form-intro">Nutzen Sie dieses Formular für strukturierte Anfragen. Alle Felder mit * sind Pflichtfelder.</p>
+
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contact-form">
+
+        <!-- Personal Information -->
+        <div class="form-section">
+          <h3>Ihre Daten</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text"
+                     id="name"
+                     [(ngModel)]="contactMessage.name"
+                     name="name"
+                     required
+                     [class.error]="hasError('name')"
+                     placeholder="Ihr vollständiger Name">
+              <div *ngIf="hasError('name')" class="error-message">
+                {{ getError('name') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input type="email"
+                     id="email"
+                     [(ngModel)]="contactMessage.email"
+                     name="email"
+                     required
+                     [class.error]="hasError('email')"
+                     placeholder="ihre@email.at">
+              <div *ngIf="hasError('email')" class="error-message">
+                {{ getError('email') }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Preferences -->
+        <div class="form-section">
+          <h3>Kontakt-Präferenzen</h3>
+
+          <div class="form-group">
+            <label for="preferredContact">Bevorzugter Kontaktweg</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio"
+                       [(ngModel)]="contactMessage.preferredContact"
+                       name="preferredContact"
+                       value="email"
+                       (change)="onPreferredContactChange()">
+                <span class="radio-label">E-Mail</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio"
+                       [(ngModel)]="contactMessage.preferredContact"
+                       name="preferredContact"
+                       value="phone"
+                       (change)="onPreferredContactChange()">
+                <span class="radio-label">Telefon</span>
+              </label>
+            </div>
+          </div>
+
+          <div *ngIf="showPhoneField" class="form-group">
+            <label for="phone">Telefonnummer *</label>
+            <input type="tel"
+                   id="phone"
+                   [(ngModel)]="contactMessage.phone"
+                   name="phone"
+                   [class.error]="hasError('phone')"
+                   placeholder="+43 123 456789">
+            <div *ngIf="hasError('phone')" class="error-message">
+              {{ getError('phone') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Message Category -->
+        <div class="form-section">
+          <h3>Art der Anfrage</h3>
+
+          <div class="form-group">
+            <label for="category">Kategorie *</label>
+            <select id="category"
+                    [(ngModel)]="contactMessage.category"
+                    name="category"
+                    required>
+              <option *ngFor="let category of contactCategories" [value]="category.value">
+                {{ category.label }}
+              </option>
+            </select>
+            <p class="category-description">{{ getCategoryDescription(contactMessage.category) }}</p>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Betreff (optional)</label>
+            <input type="text"
+                   id="subject"
+                   [(ngModel)]="contactMessage.subject"
+                   name="subject"
+                   placeholder="Kurze Beschreibung Ihres Anliegens">
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-option urgent-checkbox">
+              <input type="checkbox"
+                     [(ngModel)]="contactMessage.isUrgent"
+                     name="isUrgent">
+              <span class="checkbox-label">
+                <strong>Dringende Anfrage</strong> (Antwort binnen 24 Stunden gewünscht)
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div class="form-section">
+          <h3>Ihre Nachricht</h3>
+
+          <div class="form-group">
+            <label for="message">Nachricht *</label>
+            <textarea id="message"
+                      [(ngModel)]="contactMessage.message"
+                      name="message"
+                      required
+                      [class.error]="hasError('message')"
+                      rows="6"
+                      placeholder="Beschreiben Sie bitte Ihr Anliegen so detailliert wie möglich. Je mehr Informationen Sie uns geben, desto besser können wir Ihnen helfen."></textarea>
+            <div *ngIf="hasError('message')" class="error-message">
+              {{ getError('message') }}
+            </div>
+            <div class="character-count">
+              {{ contactMessage.message.length }}/1000 Zeichen
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-submit">
+          <div *ngIf="hasError('submit')" class="error-message submit-error">
+            {{ getError('submit') }}
+          </div>
+
+          <div class="submit-buttons">
+            <button type="submit"
+                    class="btn-primary submit-btn"
+                    [disabled]="isSubmitting || contactForm.invalid">
+              <span *ngIf="!isSubmitting">Nachricht senden</span>
+              <span *ngIf="isSubmitting">Wird gesendet...</span>
+            </button>
+
+            <button type="button"
+                    (click)="sendDirectEmail()"
+                    class="btn-secondary">
+              Als E-Mail öffnen
+            </button>
+          </div>
+
+          <p class="form-note">
+            <strong>Datenschutz:</strong> Ihre Daten werden nur für die Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Häufig gestellte Fragen</h2>
+      <div class="faq-list">
+        <div *ngFor="let faq of contactFAQs; let i = index" class="faq-item">
+          <div class="faq-question" (click)="toggleFAQ(i)">
+            <h4>{{ faq.question }}</h4>
+            <span class="faq-toggle">{{ isFAQExpanded(i) ? '−' : '+' }}</span>
+          </div>
+          <div *ngIf="isFAQExpanded(i)" class="faq-answer">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Office Info -->
+  <section class="office-info-section">
+    <div class="container">
+      <div class="office-info-card">
+        <h2>{{ officeInfo?.name }}</h2>
+        <div class="office-details">
+          <div class="detail-group">
+            <h4>Adresse</h4>
+            <p>{{ officeInfo?.address?.city }}, {{ officeInfo?.address?.country }}</p>
+            <p><em>{{ officeInfo?.businessHours }}</em></p>
+          </div>
+
+          <div class="detail-group">
+            <h4>Digital</h4>
+            <p><strong>Website:</strong> {{ officeInfo?.website }}</p>
+            <p><strong>E-Mail:</strong> {{ officeInfo?.email }}</p>
+          </div>
+
+          <div class="detail-group">
+            <h4>Social Media</h4>
+            <div class="social-links">
+              <a [href]="officeInfo?.socialMedia?.facebook" target="_blank" rel="noopener">Facebook</a>
+              <a [href]="officeInfo?.socialMedia?.instagram" target="_blank" rel="noopener">Instagram</a>
+              <a [href]="officeInfo?.socialMedia?.discord" target="_blank" rel="noopener">Discord</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

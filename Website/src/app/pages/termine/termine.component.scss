@@ -1,0 +1,326 @@
+/* src/app/pages/termine/termine.component.scss */
+
+.termine-page {
+  background-color: white;
+  min-height: 100vh;
+}
+
+// Simple Header wie Original
+.page-header {
+  padding: 2rem 0;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+
+  h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: normal;
+  }
+
+  p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+}
+
+// Simple Filter
+.filter-section {
+  padding: 1.5rem 0;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+
+  .filter-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+
+    select {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+      font-size: 0.9rem;
+      min-width: 150px;
+    }
+
+    .clear-btn {
+      padding: 0.5rem 1rem;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+
+      &:hover {
+        background-color: var(--accent-dark);
+      }
+    }
+  }
+}
+
+// Events Section
+.events-section {
+  padding: 2rem 0;
+
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+
+  .no-events {
+    text-align: center;
+    padding: 2rem;
+
+    p {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary-color);
+      color: #333;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}
+
+// Simple Event Items wie Original
+.events-list {
+  .event-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .event-date-simple {
+      text-align: center;
+      min-width: 60px;
+
+      .date-day {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        line-height: 1;
+      }
+
+      .date-month {
+        font-size: 0.9rem;
+        color: #666;
+        text-transform: uppercase;
+      }
+    }
+
+    .event-content-simple {
+      flex: 1;
+
+      h3 {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .event-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+        flex-wrap: wrap;
+
+        .event-time {
+          color: #666;
+          font-size: 0.9rem;
+        }
+
+        .event-type-simple {
+          background-color: var(--primary-color);
+          color: #333;
+          padding: 0.2rem 0.6rem;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+      }
+
+      .event-location,
+      .event-moderator {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: #555;
+
+        strong {
+          color: #333;
+        }
+      }
+
+      .event-description-simple {
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .event-actions-simple {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .zoom-link {
+          color: var(--accent-color);
+          text-decoration: underline;
+          font-weight: 500;
+
+          &:hover {
+            color: var(--accent-dark);
+          }
+        }
+
+        .registration-note {
+          background-color: #fff3cd;
+          color: #856404;
+          padding: 0.4rem 0.8rem;
+          border-radius: 4px;
+          font-size: 0.85rem;
+          font-weight: 500;
+          border: 1px solid #ffeaa7;
+        }
+      }
+    }
+  }
+}
+
+// Info Section
+.info-section {
+  padding: 3rem 0;
+  background-color: #f9f9f9;
+
+  .regular-meetings {
+    h2 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    .meeting-item {
+      background-color: white;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+      h4 {
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin-bottom: 0.5rem;
+        color: #555;
+        line-height: 1.5;
+
+        strong {
+          color: #333;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// Container
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .events-list .event-item {
+    flex-direction: column;
+    gap: 1rem;
+
+    .event-date-simple {
+      align-self: flex-start;
+    }
+  }
+
+  .filter-section .filter-row {
+    flex-direction: column;
+    align-items: stretch;
+
+    select {
+      min-width: auto;
+    }
+  }
+
+  .page-header {
+    padding: 1.5rem 0;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+  }
+}
+@media (max-width: 768px) {
+  // Page Header mobile
+  .page-header {
+    padding: 1.5rem 0;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
+
+  // Filter Section mobile
+  .filter-section {
+    padding: 1rem 0;
+
+    .filter-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+
+      select {
+        min-width: auto;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+      }
+
+      .clear-btn {
+        width: 100%;
+        padding: 0.75rem;
+      }
+    }
+  }
+  }
+  // Events
