@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Models.Entities;
 
@@ -11,13 +12,14 @@ namespace WebApi.Controllers
   {
     private readonly ApplicationDbContext _context = context;
 
-    [HttpGet(nameof(GetTermine))]
+    [HttpGet(nameof(GetAll))]
 
-    public ActionResult<TermineController> GetTermine()
+    public async Task<IActionResult> GetAll()
     {
       // Hier würden normalerweise die Termine aus einer Datenbank oder einem anderen Speicher abgerufen werden.
-
-      var termine = _context.Termine;
+      var termine = await _context.Termine
+            .OrderBy(t => t.Date)
+            .ToListAsync();
 
       return Ok(termine);
     }
@@ -33,6 +35,7 @@ namespace WebApi.Controllers
 
 
     }
+
 
 
   }
