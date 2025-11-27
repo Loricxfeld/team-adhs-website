@@ -12,30 +12,41 @@ namespace WebApi.Controllers
   {
     private readonly ApplicationDbContext _context = context;
 
-    [HttpGet(nameof(GetAll))]
-
+    // GET: api/termine
+    [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-      // Hier würden normalerweise die Termine aus einer Datenbank oder einem anderen Speicher abgerufen werden.
       var termine = await _context.Termine
-            .OrderBy(t => t.Date)
-            .ToListAsync();
+        .OrderBy(t => t.Date)
+        .ToListAsync();
 
       return Ok(termine);
     }
 
-
-    [HttpPost]
-
-   public IActionResult AddTermin(Termin termin)
+    // GET: api/termine/upcoming
+    [HttpGet("upcoming")]
+    public async Task<IActionResult> GetUpcoming([FromQuery] int limit = 10)
     {
-      _context.Termine.Add(termin);
-      _context.SaveChanges();
-      return Ok();
+      var termine = await _context.Termine
+        .Where(t => t.Date >= DateTime.UtcNow)
+        .OrderBy(t => t.Date)
+        .Take(limit)
+        .ToListAsync();
 
-
+      return Ok(termine);
     }
 
+    // GET: api/termine/{id}
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+      var termin = await _context.Termine.FindAsync(id);
+
+      if (termin == null)
+        return NotFound();
+
+      return Ok(termin);
+    }
 
 
   }

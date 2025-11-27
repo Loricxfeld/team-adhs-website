@@ -12,7 +12,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
   var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
   options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
-
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("AllowAngular", policy =>
+  {
+    policy.WithOrigins("http://localhost:4200") // Angular Dev Server
+          .AllowAnyHeader()
+          .AllowAnyMethod();
+  });
+});
 var app = builder.Build();
 //app.MapOpenApi();
 //app.MapScalarApiReference();
@@ -23,6 +31,7 @@ if (app.Environment.IsDevelopment())
   app.MapScalarApiReference(); // ← Scalar UI
 }
 app.UseHttpsRedirection();
+app.UseCors("AllowAngular");
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
