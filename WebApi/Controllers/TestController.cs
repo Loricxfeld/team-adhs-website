@@ -7,14 +7,9 @@ namespace WebApi.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class TestController : ControllerBase
+  public class TestController(ApplicationDbContext context) : ControllerBase
   {
-    private readonly ApplicationDbContext _context;
-
-    public TestController(ApplicationDbContext context)
-    {
-      _context = context;
-    }
+    private readonly ApplicationDbContext _context = context;
 
     // GET: api/test/members
     [HttpGet("members")]
