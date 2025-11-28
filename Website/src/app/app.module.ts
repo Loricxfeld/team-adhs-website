@@ -27,7 +27,7 @@ import { AngehoerigeComponent } from './pages/angehoerige/angehoerige.component'
 import { SupportTipsComponent } from './components/support-tips/support-tips.component';
 import { KontaktComponent } from './pages/kontakt/kontakt.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -61,7 +61,8 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
     MatIconModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+     HttpClientModule
   ],
   providers: [
 

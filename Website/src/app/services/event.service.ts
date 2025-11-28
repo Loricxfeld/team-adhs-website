@@ -1,6 +1,6 @@
 // src/app/services/event.service.ts
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Event, EventFilter } from '../models/event';
 
@@ -17,7 +17,9 @@ private events: Event[] = []
   private apiUrl = 'https://localhost:7148/api/termine';
 
   getEvents(): Observable<Event[]> {
-      return this.http.get<Event[]>(this.apiUrl);;
+        return this.http.get<Event[]>(this.apiUrl).pipe(
+    tap(events => this.events = events)
+  );
   }
 
 
@@ -51,9 +53,9 @@ private events: Event[] = []
     });
   }
 
-  getEventTypes(): string[] {
-    return ['Selbsthilfegruppe', 'Online-Meeting', 'Workshop', 'AuDHS', 'Partner-Treffen'];
-  }
+ getEventTypes(): string[] {
+  return [...new Set(this.events.map(e => e.type))];
+}
 
   getNextEventOfType(type: string): Event | null {
     const now = new Date();
