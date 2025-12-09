@@ -26,6 +26,9 @@ export class TermineService {
 
   constructor(private http: HttpClient) { }
 
+
+
+
   // Alle Termine
   getAll(): Observable<Termin[]> {
     return this.http.get<Termin[]>(this.apiUrl);

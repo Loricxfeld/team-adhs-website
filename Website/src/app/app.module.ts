@@ -28,6 +28,7 @@ import { SupportTipsComponent } from './components/support-tips/support-tips.com
 import { KontaktComponent } from './pages/kontakt/kontakt.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminTermineComponent } from './pages/admin-termine/admin-termine.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     SupportTipsComponent,
     KontaktComponent,
     ContactFormComponent,
+    AdminTermineComponent,
     
   ],
   imports: [

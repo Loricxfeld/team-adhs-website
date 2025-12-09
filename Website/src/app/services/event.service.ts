@@ -21,7 +21,9 @@ private events: Event[] = []
     tap(events => this.events = events)
   );
   }
-
+createEvent(event: Event): Observable<any> {
+  return this.http.post(`${this.apiUrl}`, event);
+}
 
   getUpcomingEvents(limit: number = 3): Observable<Event[]> {
     const now = new Date();

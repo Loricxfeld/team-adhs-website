@@ -47,7 +47,25 @@ namespace WebApi.Controllers
 
       return Ok(termin);
     }
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] Termin termin)
+    {
+      if (!ModelState.IsValid)
+        return BadRequest(ModelState);
 
+      termin.CreatedAt = DateTime.UtcNow;
+      termin.UpdatedAt = DateTime.UtcNow;
+
+      _context.Termine.Add(termin);
+      await _context.SaveChangesAsync();
+
+      return Ok(new
+      {
+        Success = true,
+        Id = termin.Id,
+        Message = "Termin erfolgreich erstellt"
+      });
+    }
 
   }
 }

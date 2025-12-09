@@ -6,6 +6,7 @@ import { MitgliedWerdenComponent } from './pages/mitglied-werden/mitglied-werden
 import { SelbsthilfegruppeComponent } from './pages/selbsthilfegruppe/selbsthilfegruppe.component';
 import { AngehoerigeComponent } from './pages/angehoerige/angehoerige.component';
 import { KontaktComponent } from './pages/kontakt/kontakt.component';
+import { AdminTermineComponent } from './pages/admin-termine/admin-termine.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'die-selbsthilfegruppe', component: SelbsthilfegruppeComponent },
   { path: 'angehoerige', component: AngehoerigeComponent },  // NEU
   { path: 'kontakt', component: KontaktComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'admin', component: AdminTermineComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
