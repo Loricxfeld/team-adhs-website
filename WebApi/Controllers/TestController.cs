@@ -23,9 +23,9 @@ namespace WebApi.Controllers
     [HttpPost("member")]
     public async Task<IActionResult> AddMember([FromBody] Member member)
     {
-      member.CreatedAt = DateTime.UtcNow;
-      member.UpdatedAt = DateTime.UtcNow;
-      member.JoinDate = DateTime.UtcNow;
+      member.CreatedAt = DateTime.Now;
+      member.UpdatedAt = DateTime.Now;
+      member.JoinDate = DateTime.Now;
 
       _context.Members.Add(member);
       await _context.SaveChangesAsync();

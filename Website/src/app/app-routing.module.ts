@@ -7,7 +7,7 @@ import { SelbsthilfegruppeComponent } from './pages/selbsthilfegruppe/selbsthilf
 import { AngehoerigeComponent } from './pages/angehoerige/angehoerige.component';
 import { KontaktComponent } from './pages/kontakt/kontakt.component';
 import { AdminTermineComponent } from './pages/admin-termine/admin-termine.component';
-
+import { AdminTermineListComponent } from './pages/admin-termine-list/admin-termine-list.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'termine', component: TermineComponent },
@@ -15,7 +15,10 @@ const routes: Routes = [
   { path: 'die-selbsthilfegruppe', component: SelbsthilfegruppeComponent },
   { path: 'angehoerige', component: AngehoerigeComponent },  // NEU
   { path: 'kontakt', component: KontaktComponent },
-  { path: 'admin', component: AdminTermineComponent },
+ // ✅ NEU: Admin Routes
+  { path: 'admin/termine', component: AdminTermineListComponent },
+  { path: 'admin/termine/create', component: AdminTermineComponent },
+  { path: 'admin/termine/:id', component: AdminTermineComponent },
   { path: '**', redirectTo: '' },
 ];
 

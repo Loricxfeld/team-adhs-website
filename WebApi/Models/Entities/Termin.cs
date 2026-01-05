@@ -18,8 +18,6 @@ namespace WebApi.Models.Entities
     [Required]
     public DateTime Date { get; set; }
 
-    [MaxLength(10)]
-    public string? Time { get; set; }
 
     public bool IsOnline { get; set; }
 
@@ -38,13 +36,10 @@ namespace WebApi.Models.Entities
     [MaxLength(200)]
     public string? Moderator { get; set; }
 
-    [MaxLength(200)]
-    public string? Frequency { get; set; }
+ 
 
-    public bool IsRecurring { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
   }
 }

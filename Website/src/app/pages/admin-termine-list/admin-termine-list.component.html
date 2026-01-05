@@ -1,0 +1,35 @@
+<div class="admin-container">
+  <div class="header">
+    <h2>Termine verwalten</h2>
+    <button class="btn-primary" routerLink="/admin/termine/create">
+      ➕ Neuer Termin
+    </button>
+  </div>
+
+  <div *ngIf="loading">Laden...</div>
+
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Titel</th>
+        <th>Typ</th>
+        <th>Datum</th>
+        <th>Online</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let termin of termine">
+        <td>{{ termin.title }}</td>
+        <td>{{ termin.type }}</td>
+        <td>{{ termin.date | date:'dd.MM.yyyy HH:mm' }}</td>
+        <td>{{ termin.isOnline ? '✅' : '❌' }}</td>
+        <td class="actions">
+          <button (click)="edit(termin.id)" title="Bearbeiten">✏️</button>
+          <button (click)="copy(termin)" title="Kopieren">📋</button>
+          <button (click)="delete(termin.id)" title="Löschen" class="delete">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

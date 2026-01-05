@@ -62,7 +62,7 @@ export class TermineComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvents();
-    this.loadUpcomingEvents();
+  
   }
 
   private loadEvents(): void {
@@ -70,9 +70,11 @@ export class TermineComponent implements OnInit {
     this.eventService.getEvents().subscribe({
       next: (events) => {
         this.events = events;
-        this.applyFilters();
+      
+        this.loadUpcomingEvents()
         this.isLoading = false;
       },
+     
       error: (error) => {
         console.error('Error loading events:', error);
         this.isLoading = false;
@@ -81,11 +83,17 @@ export class TermineComponent implements OnInit {
   }
 
   private loadUpcomingEvents(): void {
-    this.eventService.getUpcomingEvents(3).subscribe({
-      next: (events) => {
-        this.upcomingEvents = events;
-      }
-    });
+   
+       const now = new Date();
+     this.upcomingEvents = this.events
+         .filter(x => new Date(x.date) >= now)
+         .sort((a, b) => new Date( a.date).getTime() - new Date(b.date).getTime())
+         .slice(0, 20);
+     
+     
+      
+      
+      this.applyFilters();
   }
 
   onFilterChange(): void {
@@ -93,7 +101,7 @@ export class TermineComponent implements OnInit {
   }
 
   private applyFilters(): void {
-    this.filteredEvents = this.eventService.filterEvents(this.events, this.currentFilter);
+    this.filteredEvents = this.eventService.filterEvents(this.upcomingEvents, this.currentFilter);
   }
 
   onRegisterForEvent(event: Event): void {

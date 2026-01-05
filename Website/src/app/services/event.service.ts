@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Event, EventFilter } from '../models/event';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,8 @@ private events: Event[] = []
 
 
   constructor(private http: HttpClient) { }
-  private apiUrl = 'https://localhost:7148/api/termine';
+ 
+  private apiUrl = environment.apiUrl + '/termine';
 
   getEvents(): Observable<Event[]> {
         return this.http.get<Event[]>(this.apiUrl).pipe(
@@ -25,7 +27,7 @@ createEvent(event: Event): Observable<any> {
   return this.http.post(`${this.apiUrl}`, event);
 }
 
-  getUpcomingEvents(limit: number = 3): Observable<Event[]> {
+  getUpcomingEvents(limit: number =20): Observable<Event[]> {
     const now = new Date();
     const upcoming = this.events
       .filter(event => event.date >= now)
@@ -83,4 +85,15 @@ createEvent(event: Event): Observable<any> {
     );
     return of(monthEvents);
   }
+  getById(id: number): Observable<Event> {
+  return this.http.get<Event>(`${this.apiUrl}/${id}`);
+}
+  updateEvent(id: number, event: Event): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}`, event);
+}
+
+// Delete Termin
+deleteEvent(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`);
+}
 }

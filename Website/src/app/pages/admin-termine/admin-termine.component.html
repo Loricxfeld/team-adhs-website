@@ -1,1 +1,81 @@
-<p>admin-termine works!</p>
+ <div class="admin-container">
+        <h2>{{ editMode ? 'Termin bearbeiten' : 'Neuen Termin erstellen' }}</h2>
+      <div *ngIf="successMessage" class="success">
+        ✅ {{ successMessage }}
+      </div>
+
+      <div *ngIf="errorMessage" class="error">
+        ❌ {{ errorMessage }}
+      </div>
+
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="form-group">
+          <label>Titel *</label>
+          <input type="text" [(ngModel)]="newEvent.title" name="title" required>
+        </div>
+
+        <div class="form-group">
+          <label>Typ *</label>
+          <select [(ngModel)]="newEvent.type" name="type" required>
+            <option value="Online-Meeting">Online-Meeting</option>
+            <option value="Selbsthilfegruppe">Selbsthilfegruppe</option>
+            <option value="AuDHS">AuDHS</option>
+            <option value="Partner-Treffen">Partner-Treffen</option>
+            <option value="Workshop">Workshop</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Datum *</label>
+            <input type="datetime-local" [(ngModel)]="dateTimeInput" name="date" required>
+          </div>
+
+       
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="newEvent.isOnline" name="isOnline">
+            Online-Termin
+          </label>
+        </div>
+
+        <div class="form-group" *ngIf="!newEvent.isOnline">
+          <label>Ort</label>
+          <input type="text" [(ngModel)]="newEvent.location" name="location">
+        </div>
+
+        <div class="form-group" *ngIf="newEvent.isOnline">
+          <label>Zoom-Link</label>
+          <input type="url" [(ngModel)]="newEvent.zoomLink" name="zoomLink">
+        </div>
+
+        <div class="form-group">
+          <label>Beschreibung *</label>
+          <textarea [(ngModel)]="newEvent.description" name="description" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Moderator</label>
+          <input type="text" [(ngModel)]="newEvent.moderator" name="moderator">
+        </div>
+
+        
+
+       
+        <div class="form-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="newEvent.requiresRegistration" name="requiresRegistration">
+            Anmeldung erforderlich
+          </label>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" [disabled]="!form.valid || loading">
+            {{ loading ? 'Wird gespeichert...' : 'Termin erstellen' }}
+          </button>
+          <button type="button" (click)="resetForm()">Zurücksetzen</button>
+        </div>
+      </form>
+    </div>

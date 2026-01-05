@@ -3,14 +3,14 @@ export interface Event {
   title: string;
   type: 'Selbsthilfegruppe' | 'Online-Meeting' | 'Workshop' | 'AuDHS' | 'Partner-Treffen';
   date: Date;
-  time?: string;
+ 
   isOnline: boolean;
   location?: string;
   zoomLink?: string;
   description: string;
   requiresRegistration: boolean;
   moderator?: string;
-  frequency?: string;
+ 
   isRecurring?: boolean;
 }
 
