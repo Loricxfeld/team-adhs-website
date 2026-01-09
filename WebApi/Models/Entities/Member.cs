@@ -24,7 +24,7 @@ namespace WebApi.Models.Entities
     [StringLength(50)]
     public string? Phone { get; set; }
 
-    public DateTime? BirthDate { get; set; }
+   
 
     // Adresse
     [StringLength(200)]

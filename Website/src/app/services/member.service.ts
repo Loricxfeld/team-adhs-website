@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Member, MembershipBenefit } from '../models/member';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
 
+    private apiUrl = environment.apiUrl + '/members';  // ✅ NEU
   private membershipBenefits: MembershipBenefit[] = [
     {
       title: 'Ermäßigungen',
@@ -35,24 +37,37 @@ export class MemberService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getMembershipBenefits(): Observable<MembershipBenefit[]> {
     return of(this.membershipBenefits);
   }
 
-  submitMembership(member: Member)
+  submitMembership(member: Member):Observable<any>
   //:    Observable<boolean>
   {
-    // In a real app, this would send data to backend
-    console.log('New membership application:', member);
 
-    // Simulate API call
-    return new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 1500);
-    });
+     // Member für Backend vorbereiten
+  const memberDto = {
+    firstName: member.firstName,
+    lastName: member.lastName,
+    email: member.email,
+    phone: member.phone,
+    street: member.address.street,
+    postalCode: member.address.postalCode,
+    city: member.address.city,
+    country: member.address.country,
+    membershipType: member.membershipType,
+    interests: member.interests?.join(',') || '',  // ✅ Array → String
+    activeSupport: member.activeSupport,
+    supportAreas: member.supportAreas?.join(',') || '',  // ✅ Array → String
+    newsletter: member.newsletter,
+    dataProtection: member.dataProtection,
+    additionalInfo: member.additionalInfo
+  };
+
+  return this.http.post(this.apiUrl, member);  // ✅ API Call
+    
   }
 
   validateEmail(email: string): boolean {

@@ -135,30 +135,26 @@ export class MitgliedWerdenComponent implements OnInit {
     return isValid;
   }
 
-  async onSubmit(): Promise<void> {
-    if (!this.validateForm()) {
-      return;
-    }
+  onSubmit(): void {
+  if (!this.validateForm()) {
+    return;
+  }
 
-    this.isSubmitting = true;
+  this.isSubmitting = true;
 
-    try {
-      const success = await this.memberService.submitMembership(this.member);
-
-      if (success) {
-        this.isSubmitted = true;
-        // Reset form
-        this.resetForm();
-      } else {
-        this.formErrors['submit'] = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
-      }
-    } catch (error) {
+  this.memberService.submitMembership(this.member).subscribe({
+    next: (response) => {
+      this.isSubmitted = true;
+      this.resetForm();
+      this.isSubmitting = false;
+    },
+    error: (error) => {
       console.error('Membership submission error:', error);
       this.formErrors['submit'] = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
-    } finally {
       this.isSubmitting = false;
     }
-  }
+  });
+}
 
   private resetForm(): void {
     this.member = {
