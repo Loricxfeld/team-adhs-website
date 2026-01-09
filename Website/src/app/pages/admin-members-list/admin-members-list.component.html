@@ -1,0 +1,33 @@
+<div class="admin-container">
+  <h2>Mitgliedschaften verwalten</h2>
+
+  <div *ngIf="loading">Laden...</div>
+
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mitgliedstyp</th>
+        <th>Beitrittsdatum</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let member of members">
+        <td>{{ member.firstName }} {{ member.lastName }}</td>
+        <td>{{ member.email }}</td>
+        <td>{{ member.membershipType }}</td>
+        <td>{{ member.joinDate | date:'dd.MM.yyyy' }}</td>
+        <td>
+   <select [(ngModel)]="member.status" 
+        (ngModelChange)="onStatusChange(member.id!, $event)">
+            <option *ngFor="let opt of statusOptions" [value]="opt.value">
+    {{ opt.label }}
+  </option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

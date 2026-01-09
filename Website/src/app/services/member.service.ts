@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class MemberService {
 
-    private apiUrl = environment.apiUrl + '/members';  // ✅ NEU
+  private apiUrl = environment.apiUrl + '/members';  // ✅ NEU
   private membershipBenefits: MembershipBenefit[] = [
     {
       title: 'Ermäßigungen',
@@ -43,33 +43,43 @@ export class MemberService {
     return of(this.membershipBenefits);
   }
 
-  submitMembership(member: Member):Observable<any>
+  submitMembership(member: Member): Observable<any>
   //:    Observable<boolean>
   {
 
-     // Member für Backend vorbereiten
-  const memberDto = {
-    firstName: member.firstName,
-    lastName: member.lastName,
-    email: member.email,
-    phone: member.phone,
-    street: member.address.street,
-    postalCode: member.address.postalCode,
-    city: member.address.city,
-    country: member.address.country,
-    membershipType: member.membershipType,
-    interests: member.interests?.join(',') || '',  // ✅ Array → String
-    activeSupport: member.activeSupport,
-    supportAreas: member.supportAreas?.join(',') || '',  // ✅ Array → String
-    newsletter: member.newsletter,
-    dataProtection: member.dataProtection,
-    additionalInfo: member.additionalInfo
-  };
+    // Member für Backend vorbereiten
+    const memberDto = {
+      firstName: member.firstName,
+      lastName: member.lastName,
+      email: member.email,
+      phone: member.phone,
+      street: member.address.street,
+      postalCode: member.address.postalCode,
+      city: member.address.city,
+      country: member.address.country,
+      membershipType: member.membershipType,
+      interests: member.interests?.join(',') || '',  // ✅ Array → String
+      activeSupport: member.activeSupport,
+      supportAreas: member.supportAreas?.join(',') || '',  // ✅ Array → String
+      newsletter: member.newsletter,
+      dataProtection: member.dataProtection,
+      additionalInfo: member.additionalInfo
+    };
 
-  return this.http.post(this.apiUrl, member);  // ✅ API Call
-    
+    return this.http.post(this.apiUrl, member);  // ✅ API Call
+
+  }
+  // GET alle Members
+  getAll(): Observable<Member[]> {
+    return this.http.get<Member[]>(this.apiUrl);
   }
 
+  // Update Status
+  updateStatus(id: number, status: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${id}/status`, JSON.stringify(status), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
   validateEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);

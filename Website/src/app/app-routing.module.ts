@@ -8,6 +8,8 @@ import { AngehoerigeComponent } from './pages/angehoerige/angehoerige.component'
 import { KontaktComponent } from './pages/kontakt/kontakt.component';
 import { AdminTermineComponent } from './pages/admin-termine/admin-termine.component';
 import { AdminTermineListComponent } from './pages/admin-termine-list/admin-termine-list.component';
+import { AdminMembersListComponent } from './pages/admin-members-list/admin-members-list.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'termine', component: TermineComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'admin/termine', component: AdminTermineListComponent },
   { path: 'admin/termine/create', component: AdminTermineComponent },
   { path: 'admin/termine/:id', component: AdminTermineComponent },
+   { path: 'admin/members', component: AdminMembersListComponent },
   { path: '**', redirectTo: '' },
 ];
 

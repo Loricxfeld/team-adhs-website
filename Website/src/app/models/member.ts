@@ -20,6 +20,7 @@ export interface Member {
   dataProtection: boolean;
   additionalInfo?: string;
   joinDate?: Date;
+    status?: string;
 }
 
 export interface MembershipBenefit {

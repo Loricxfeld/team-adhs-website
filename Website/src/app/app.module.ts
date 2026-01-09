@@ -30,6 +30,8 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { HttpClientModule } from '@angular/common/http';
 import { AdminTermineComponent } from './pages/admin-termine/admin-termine.component';
 import { AdminTermineListComponent } from './pages/admin-termine-list/admin-termine-list.component';
+import { AdminMembersListComponent } from './pages/admin-members-list/admin-members-list.component';
+
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { AdminTermineListComponent } from './pages/admin-termine-list/admin-term
     ContactFormComponent,
     AdminTermineComponent,
     AdminTermineListComponent,
+    AdminMembersListComponent,
+   
     
   ],
   imports: [
