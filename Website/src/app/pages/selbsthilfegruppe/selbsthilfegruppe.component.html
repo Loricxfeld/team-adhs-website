@@ -113,7 +113,10 @@
       </div>
     </div>
   </section>
-
+ <a routerLink="/termine" class="btn btn-primary">
+          <mat-icon>calendar_today</mat-icon>
+          Alle Termine ansehen
+        </a>
   <!-- General Information -->
   <section class="info-section">
     <div class="container">
@@ -160,6 +163,7 @@
   </section>
 
   <!-- FAQ Section -->
+ <!--
   <section class="faq-section">
     <div class="container">
       <h2>Häufig gestellte Fragen</h2>
@@ -169,12 +173,12 @@
         <select id="faq-category"
                 [(ngModel)]="selectedFaqCategory"
                 (ngModelChange)="onFaqCategoryChange()">
-          <option *ngFor="let category of faqCategories" [value]="category.value">
+                <option *ngFor="let category of faqCategories" [value]="category.value">
             {{ category.label }}
           </option>
         </select>
       </div>
-
+      
       <div class="faq-list">
         <div *ngFor="let faq of faqs" class="faq-item">
           <h4 class="faq-question">{{ faq.question }}</h4>
@@ -183,9 +187,10 @@
       </div>
     </div>
   </section>
+  -->
 
   <!-- Contact CTA -->
-  <section class="contact-cta-section">
+  <!-- <section class="contact-cta-section">
     <div class="container">
       <div class="cta-card">
         <h3>Noch Fragen?</h3>
@@ -203,5 +208,5 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </div>

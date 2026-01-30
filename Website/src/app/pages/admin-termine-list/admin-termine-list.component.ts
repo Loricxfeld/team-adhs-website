@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event';
+import { SelbsthilfegruppeComponent } from '../selbsthilfegruppe/selbsthilfegruppe.component';
 
 @Component({
   selector: 'app-admin-termine-list',

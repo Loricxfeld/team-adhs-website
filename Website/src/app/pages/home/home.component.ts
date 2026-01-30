@@ -1,5 +1,8 @@
 // src/app/pages/home/home.component.ts
 import { Component, OnInit } from '@angular/core';
+import { SelbsthilfegruppeComponent } from "../selbsthilfegruppe/selbsthilfegruppe.component";
+import { AngehoerigeComponent } from "../angehoerige/angehoerige.component";
+
 
 interface TargetGroup {
   id: number;
@@ -24,7 +27,9 @@ interface SocialLink {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+ 
+
 })
 export class HomeComponent implements OnInit {
 
