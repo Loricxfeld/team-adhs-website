@@ -5,12 +5,12 @@
     <div class="container">
       <h1>Willkommen bei Team ADHS</h1>
       <p class="hero-subtitle">Verein für erwachsene Betroffene, Angehörige, Expert•innen, Freund•innen und Interessierte</p>
-      <div class="hero-actions">
-       <a routerLink="/termine" class="btn btn-hero-primary">
+      <div>
+       <a routerLink="/termine" class="btn btn-primary">
   <mat-icon>event</mat-icon>
   Nächste Termine
 </a>
-<a routerLink="/mitglied-werden" class="btn btn-hero-outline">
+<a routerLink="/mitglied-werden" class="btn btn-primary">
   <mat-icon>person_add</mat-icon>
   Mitglied werden
 </a>
@@ -30,7 +30,7 @@
             <div class="links" *ngIf="group.links">
               <a *ngFor="let link of group.links"
                  [routerLink]="link.route"
-                 class="group-link">
+                 class="btn btn-primary">
                 {{ link.text }}
               </a>
             </div>

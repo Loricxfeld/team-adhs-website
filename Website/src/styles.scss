@@ -126,6 +126,7 @@ html, body {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin: 5px;;
 
   &:disabled {
     opacity: 0.6;
