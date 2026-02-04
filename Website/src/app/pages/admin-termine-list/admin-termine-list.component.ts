@@ -6,6 +6,7 @@ import { SelbsthilfegruppeComponent } from '../selbsthilfegruppe/selbsthilfegrup
 
 @Component({
   selector: 'app-admin-termine-list',
+  standalone: false,
   templateUrl: './admin-termine-list.component.html',
   styleUrls: ['./admin-termine-list.component.scss']
 })

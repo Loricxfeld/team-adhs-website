@@ -6,6 +6,7 @@ import { SupportGroupService } from '../../services/support-group.service';
 
 @Component({
   selector: 'app-selbsthilfegruppe',
+  standalone: false,
   templateUrl: './selbsthilfegruppe.component.html',
   styleUrls: ['./selbsthilfegruppe.component.scss']
 })

@@ -10,6 +10,9 @@
 @include mat.core();
 @import 'styles/sections';
 
+// ============================================
+// MATERIAL THEME & TYPOGRAPHY
+// ============================================
 // Team ADHS Farbpalette definieren - Orange-Gelb Theme
 $team-adhs-primary: ( 50: #fff8e1, 100: #ffecb3, 200: #ffe082, 300: #ffd54f, 400: #ffca28, 500: #ffc107, // Hauptgelb (ähnlich Original)
 600: #ffb300, 700: #ffa000, 800: #ff8f00, 900: #ff6f00, A100: #ffff8d, A200: #ffff00, A400: #ffea00, A700: #ffd600, contrast: ( 50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87), 300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: rgba(black, 0.87), 600: rgba(black, 0.87), 700: rgba(black, 0.87), 800: white, 900: white, A100: rgba(black, 0.87), A200: rgba(black, 0.87), A400: rgba(black, 0.87), A700: rgba(black, 0.87), ) );
@@ -37,7 +40,9 @@ $team-adhs-dark-theme: mat.define-dark-theme(( color: ( primary: $team-adhs-prim
 // Theme anwenden
 @include mat.all-component-themes($team-adhs-light-theme);
 
-// Custom CSS Variablen für eigene Komponenten
+// ============================================
+// CSS CUSTOM PROPERTIES — DESIGN TOKENS
+// ============================================
 :root {
   // Hauptfarben - Orange-Gelb Theme
   --primary-color: #ffc107; // Hauptgelb
@@ -78,13 +83,16 @@ $team-adhs-dark-theme: mat.define-dark-theme(( color: ( primary: $team-adhs-prim
   --border-radius-xl: 16px;
 }
 
-// Global Styles
+// ============================================
+// GLOBAL RESET & BASE
+// ============================================
 * {
   box-sizing: border-box;
 }
+
 // ============================================
-// EVENT-LISTE — GLOBAL
-// Verwendet in: termine.component, selbsthilfegruppe.component
+// EVENT LISTING — GLOBAL STYLES 
+// Used: termine.component, selbsthilfegruppe.component
 // ============================================
 
 .events-list {
@@ -119,12 +127,12 @@ $team-adhs-dark-theme: mat.define-dark-theme(( color: ( primary: $team-adhs-prim
     .event-content-simple {
       flex: 1;
 
-      h3 {
-        font-size: 1.2rem;
-        color: #333;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-      }
+      // h3 {
+      //   font-size: 1.2rem;
+      //   color: #333;
+      //   margin-bottom: 0.5rem;
+      //   font-weight: 600;
+      // }
 
       .event-meta {
         display: flex;
@@ -261,7 +269,9 @@ html, body {
   outline-offset: 2px;
 }
 
-// Button Styles
+// ============================================
+// BUTTONS — GLOBAL STYLES (Primary/Secondary/Outline)
+// ============================================
 .btn {
   display: inline-flex;
   align-items: center;
@@ -314,7 +324,97 @@ html, body {
   }
 }
 
-// Card Styles
+// ============================================
+// BUTTON VARIANTS — Standalone Classes
+// (use .btn-primary directly, no parent required)
+// ============================================
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 5px;
+  background-color: var(--primary-color);
+  color: black;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 5px;
+  background-color: var(--accent-color);
+  color: black;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--accent-dark);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 5px;
+  background-color: transparent;
+  color: var(--primary-color);
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: black;
+  }
+}
+
+// ============================================
+// CARD & CONTAINER LAYOUT
+// ============================================
 .card {
   background-color: var(--surface-color);
   border-radius: var(--border-radius-lg);
@@ -377,7 +477,10 @@ html, body {
   }
 }
 
-// Responsive Typography
+// ============================================
+// TYPOGRAPHY — Responsive Headings (h1-h6)
+// Using clamp() for fluid sizing
+// ============================================
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: var(--spacing-md);
@@ -399,7 +502,9 @@ h3 {
   font-weight: 600;
 }
 
-// Utility Classes
+// ============================================
+// UTILITY CLASSES — Text & Margins
+// ============================================
 .text-center {
   text-align: center;
 }
@@ -452,7 +557,9 @@ h3 {
   margin-bottom: var(--spacing-lg);
 }
 
-// Dark Mode Support (für später)
+// ============================================
+// DARK MODE THEME — Currently Inactive
+// ============================================
 @media (prefers-color-scheme: dark) {
   .dark-mode {
     @include mat.all-component-colors($team-adhs-dark-theme);
@@ -466,4 +573,79 @@ h3 {
       --divider-color: #2c2c2c;
     }
   }
+}
+
+// ============================================
+// FORM STYLES — Global Form Components
+// Classes: form-section, form-group, form-row, form-actions
+// ============================================
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section-group {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: var(--border-radius-md);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+    }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+
+    &.error {
+      border-color: var(--warn-color);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 2rem;
 }

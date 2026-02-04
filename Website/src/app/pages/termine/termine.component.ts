@@ -5,6 +5,7 @@ import { Event, EventFilter } from '../../models/event';
 
 @Component({
   selector: 'app-termine',
+  standalone: false,
   templateUrl: './termine.component.html',
   styleUrls: ['./termine.component.scss']
 })

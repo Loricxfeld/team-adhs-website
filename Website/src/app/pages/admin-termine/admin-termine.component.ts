@@ -4,6 +4,7 @@ import { Event } from '../../models/event';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-admin-termine',
+  standalone: false,
   templateUrl: './admin-termine.component.html',
   styleUrls: ['./admin-termine.component.scss']
 })

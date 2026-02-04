@@ -3,6 +3,7 @@ import { MemberService } from '../../services/member.service';
 import { Member } from '../../models/member';
 @Component({
   selector: 'app-admin-members-list',
+  standalone: false,
   templateUrl: './admin-members-list.component.html',
   styleUrls: ['./admin-members-list.component.scss']
 })

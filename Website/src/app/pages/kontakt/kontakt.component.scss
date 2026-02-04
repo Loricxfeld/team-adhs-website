@@ -39,9 +39,7 @@
 .page-header {
   padding: 2rem 0;
   border-bottom: 1px solid #eee;
-          /* TODO: removed local `h3` styling — consider class-specific rule if accent color required */
-          /* TODO: removed local `h4` styling — use global headings or class-specific rules */
-  }
+  /* TODO: removed local `h1` styling — use global `h1` */
 
   p {
     color: #666;
@@ -63,9 +61,8 @@
 
     .contact-option {
       background-color: white;
-        /* TODO: local heading styles removed — use global h3/h4 */
-        margin-bottom: 0.5rem;
-      }
+      /* TODO: local heading styles removed — use global h3/h4 */
+      margin-bottom: 0.5rem;
 
       p {
         color: #666;

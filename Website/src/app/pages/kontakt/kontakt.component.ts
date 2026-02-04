@@ -5,6 +5,7 @@ import { ContactMessage, ContactPerson, OfficeInfo } from '../../models/contact-
 
 @Component({
   selector: 'app-kontakt',
+  standalone: false,
   templateUrl: './kontakt.component.html',
   styleUrls: ['./kontakt.component.scss']
 })

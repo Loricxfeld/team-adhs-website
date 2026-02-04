@@ -5,6 +5,7 @@ import { Member, MembershipBenefit } from '../../models/member';
 
 @Component({
   selector: 'app-mitglied-werden',
+  standalone: false,
   templateUrl: './mitglied-werden.component.html',
   styleUrls: ['./mitglied-werden.component.scss']
 })

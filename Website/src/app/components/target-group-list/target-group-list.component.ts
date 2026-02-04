@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-target-group-list',
+  standalone: false,
   templateUrl: './target-group-list.component.html',
   styleUrls: ['./target-group-list.component.scss']
 })

@@ -4,6 +4,7 @@ import { Event } from '../../models/event';
 
 @Component({
   selector: 'app-event-card',
+  standalone: false,
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss']
 })

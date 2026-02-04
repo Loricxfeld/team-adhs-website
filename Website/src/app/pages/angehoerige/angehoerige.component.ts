@@ -5,6 +5,7 @@ import { SupportTip, RelativeResource, ChallengeAndSolution } from '../../models
 
 @Component({
   selector: 'app-angehoerige',
+  standalone: false,
   templateUrl: './angehoerige.component.html',
   styleUrls: ['./angehoerige.component.scss']
 })
