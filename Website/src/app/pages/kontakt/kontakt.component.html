@@ -4,10 +4,13 @@
   <!-- Success Message -->
   <div *ngIf="isSubmitted" class="success-overlay">
     <div class="success-message">
-      <div class="success-icon">✓</div>
+      <div class="success-icon">
+        <mat-icon>check_circle</mat-icon>
+      </div>
       <h2>Nachricht gesendet!</h2>
       <p>Vielen Dank für Ihre Nachricht. Wir werden uns binnen 2-3 Werktagen bei Ihnen melden.</p>
       <button (click)="resetSubmittedState()" class="btn-primary">
+        <mat-icon>edit</mat-icon>
         Neue Nachricht
       </button>
     </div>
@@ -27,31 +30,46 @@
       <h2>Schneller Kontakt</h2>
       <div class="quick-contact-grid">
         <div class="contact-option">
-          <div class="contact-icon">📧</div>
+          <mat-icon class="option-icon">email</mat-icon>
           <h3>E-Mail</h3>
           <p>kontakt@team-adhs.at</p>
           <div class="contact-actions">
-            <a href="mailto:kontakt@team-adhs.at" class="btn-primary">E-Mail öffnen</a>
-            <button (click)="copyEmailToClipboard()" class="btn-outline">Kopieren</button>
+            <a href="mailto:kontakt@team-adhs.at" class="btn-primary">
+              <mat-icon>send</mat-icon>
+              E-Mail öffnen
+            </a>
+            <button (click)="copyEmailToClipboard()" class="btn-outline">
+              <mat-icon>content_copy</mat-icon>
+              Kopieren
+            </button>
           </div>
         </div>
 
         <div class="contact-option">
-          <div class="contact-icon">👥</div>
+          <mat-icon class="option-icon">share</mat-icon>
           <h3>Social Media</h3>
           <p>Folgen Sie uns auf unseren Kanälen</p>
           <div class="social-buttons">
-            <button (click)="openSocialLink('facebook')" class="social-btn facebook">Facebook</button>
-            <button (click)="openSocialLink('instagram')" class="social-btn instagram">Instagram</button>
-            <button (click)="openSocialLink('discord')" class="social-btn discord">Discord</button>
+            <button (click)="openSocialLink('facebook')" class="social-btn facebook" title="Facebook">
+              <mat-icon>fab-facebook</mat-icon>
+            </button>
+            <button (click)="openSocialLink('instagram')" class="social-btn instagram" title="Instagram">
+              <mat-icon>fab-instagram</mat-icon>
+            </button>
+            <button (click)="openSocialLink('discord')" class="social-btn discord" title="Discord">
+              <mat-icon>fab-discord</mat-icon>
+            </button>
           </div>
         </div>
 
         <div class="contact-option">
-          <div class="contact-icon">📝</div>
+          <mat-icon class="option-icon">message</mat-icon>
           <h3>Kontaktformular</h3>
           <p>Strukturierte Anfrage stellen</p>
-          <button (click)="scrollToForm()" class="btn-secondary">Zum Formular</button>
+          <button (click)="scrollToForm()" class="btn-secondary">
+            <mat-icon>arrow_downward</mat-icon>
+            Zum Formular
+          </button>
         </div>
       </div>
     </div>
@@ -273,7 +291,7 @@
         <div *ngFor="let faq of contactFAQs; let i = index" class="faq-item">
           <div class="faq-question" (click)="toggleFAQ(i)">
             <h4>{{ faq.question }}</h4>
-            <span class="faq-toggle">{{ isFAQExpanded(i) ? '−' : '+' }}</span>
+            <mat-icon class="faq-toggle">{{ isFAQExpanded(i) ? 'expand_less' : 'expand_more' }}</mat-icon>
           </div>
           <div *ngIf="isFAQExpanded(i)" class="faq-answer">
             <p>{{ faq.answer }}</p>
