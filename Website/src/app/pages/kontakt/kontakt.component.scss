@@ -202,13 +202,14 @@
           align-items: center;
           gap: 0.4rem;
           transition: all 0.3s ease;
+          font-weight: 500;
 
           &.facebook {
             background-color: #1877f2;
           }
 
           &.instagram {
-            background-color: #e4405f;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           }
 
           &.discord {
@@ -220,10 +221,11 @@
             transform: translateY(-2px);
           }
 
-          mat-icon {
-            font-size: 1rem;
-            width: 1rem;
-            height: 1rem;
+          .social-icon {
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
