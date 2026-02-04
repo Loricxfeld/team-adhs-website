@@ -32,11 +32,7 @@
   padding: 2rem 0;
   border-bottom: 1px solid #eee;
 
-  h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
+  /* TODO: removed local `h1` styling — use global `h1` */
 
   p {
     color: #666;
@@ -88,10 +84,7 @@
         margin-bottom: 1rem;
       }
 
-      h3 {
-        color: var(--accent-color);
-        margin-bottom: 0.5rem;
-      }
+      /* TODO: removed local `h3` styling — if accent color is required, prefer a class-specific selector */
 
       p {
         color: #666;
@@ -143,11 +136,7 @@
 
         .tip-title-area {
           flex: 1;
-
-          h3 {
-            margin-bottom: 0.5rem;
-            color: var(--accent-color);
-          }
+          /* TODO: h3 heading styles removed — use global h3 */
 
           .tip-description {
             color: #666;
@@ -165,11 +154,7 @@
       .tip-details {
         padding: 0 1.5rem 1.5rem;
         background-color: white;
-
-        h4 {
-          color: var(--accent-color);
-          margin-bottom: 1rem;
-        }
+        /* TODO: h4 heading styles removed — use global h4 */
 
         ul {
           color: #555;
@@ -201,19 +186,11 @@
 
       .challenge-problem {
         margin-bottom: 1.5rem;
-
-        h4 {
-          color: var(--accent-color); // War vorher var(--warn-color)
-          margin-bottom: 0.5rem;
-        }
+        /* TODO: h4 heading styles removed — use global h4 */
       }
 
       .challenge-solution {
-        h4 {
-          color: var(--online-color);
-          margin-bottom: 0.5rem;
-        }
-
+        /* TODO: h4 heading styles removed — use global h4 */
         p {
           color: #555;
           line-height: 1.5;
@@ -275,11 +252,7 @@
 
     .meeting-benefits {
       margin: 1.5rem 0;
-
-      h4 {
-        color: var(--accent-color);
-        margin-bottom: 1rem;
-      }
+      /* TODO: h4 heading styles removed — use global h4 */
 
       ul {
         color: #555;
@@ -362,10 +335,7 @@
       }
 
       .resource-content {
-        h3 {
-          color: #333;
-          margin-bottom: 1rem;
-        }
+        /* TODO: h3 heading styles removed — use global h3 */
 
         .resource-description {
           color: #666;
@@ -400,10 +370,7 @@
   .selfcare-content {
     text-align: center;
 
-    h2 {
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
+    /* TODO: h2 heading styles removed — use global h2 */
 
     .selfcare-intro {
       color: #666;
@@ -429,11 +396,7 @@
           font-size: 2rem;
           margin-bottom: 1rem;
         }
-
-        h4 {
-          color: var(--accent-color);
-          margin-bottom: 0.5rem;
-        }
+        /* TODO: h4 heading styles removed — use global h4 */
 
         p {
           color: #666;
@@ -471,11 +434,7 @@
     padding: 2.5rem;
     border-radius: 8px;
     border-left: 4px solid var(--primary-color);
-
-    h3 {
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
+    /* TODO: h3 heading styles removed — use global h3 */
 
     p {
       color: #666;
@@ -492,35 +451,7 @@
   }
 }
 
-// Buttons und weitere Styles
-.btn-primary, .btn-secondary, .btn-outline {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-.btn-primary {
-  background-color: var(--primary-color);
-  color: #333;
-
-  &:hover {
-    background-color: var(--primary-dark);
-  }
-}
-
-.btn-secondary {
-  background-color: var(--accent-color);
-  color: white;
-
-  &:hover {
-    background-color: var(--accent-dark);
-  }
-}
+// Buttons: use global styles in src/styles.scss
 
 .btn-outline {
   background-color: transparent;
@@ -540,36 +471,7 @@
 }
 
 // Form Styles
-.contact-form {
-  .form-group {
-    margin-bottom: 1rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #333;
-      font-weight: 500;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-
-      &:focus {
-        outline: none;
-        border-color: var(--primary-color);
-      }
-    }
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-  }
-}
+/* contact-form: use global .contact-form rules in src/styles.scss */
 
 .close-btn {
   background: none;

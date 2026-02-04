@@ -13,6 +13,8 @@
 }
 
 .footer-section {
+  /* KEEP: footer headings intentionally use `var(--primary-color)` for contrast.
+     TODO: Review if this should be converted to a class-specific selector. */
   h3, h4 {
     color: var(--primary-color);
     margin-bottom: 1rem;

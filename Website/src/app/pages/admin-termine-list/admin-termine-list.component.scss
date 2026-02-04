@@ -13,9 +13,8 @@
   align-items: center;
   margin-bottom: 2rem;
 
-  h2 {
-    margin: 0;
-  }
+  /* TODO: review local `h2` in admin header — prefer global `h2` or a class-specific heading */
+  /* TODO: h2 heading styles removed — use global h2 */
 }
 
 .btn-primary {

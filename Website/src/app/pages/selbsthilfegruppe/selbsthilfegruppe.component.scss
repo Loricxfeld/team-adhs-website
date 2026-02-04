@@ -32,11 +32,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
-
-      h3 {
-        margin: 0;
-        color: var(--primary-color);
-      }
+      /* TODO: h3 heading styles removed — use global h3 */
 
       .close-btn {
         background: none;
@@ -59,12 +55,7 @@
   background-color: white;
   border-bottom: 1px solid #eee;
 
-  h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
-    font-weight: normal;
-  }
+  /* TODO: removed local `h1` styling — use global `h1` or add a class-specific selector if needed */
 
   p {
     color: #666;
@@ -79,13 +70,7 @@
   padding: 3rem 0;
   background-color: #f9f9f9;
 
-  h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #333;
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
+  /* TODO: removed local `h2` styling — use global `h2` or a class-specific selector */
 
   .benefits-grid {
     display: grid;
@@ -104,12 +89,7 @@
         transform: translateY(-2px);
       }
 
-      h3 {
-        color: var(--accent-color);
-        margin-bottom: 1rem;
-        font-size: 1.3rem;
-        font-weight: 500;
-      }
+      /* TODO: removed local `h3` styling — consider class-specific rule for accent headings */
 
       p {
         color: #666;
@@ -148,12 +128,7 @@
       grid-template-columns: 1fr;
     }
 
-    // h2 {
-    //   font-size: 1.8rem;
-    //   font-weight: 600;
-    //   color: #333;
-    //   margin-bottom: 2rem;
-    // }
+    /* (previously commented) local `h2` adjustments removed — rely on global `h2` */
 
     .info-steps {
       .step {
@@ -175,12 +150,7 @@
         }
 
         .step-content {
-          h4 {
-            margin-bottom: 0.5rem;
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            font-weight: 500;
-          }
+          /* TODO: removed local `h4` styling — consider class-specific selector if needed */
 
           p {
             color: #666;
@@ -198,12 +168,7 @@
       border-left: 4px solid var(--primary-color);
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
-      h3 {
-        color: var(--accent-color);
-        margin-bottom: 1rem;
-        font-size: 1.3rem;
-        font-weight: 500;
-      }
+      /* TODO: removed local `h3` styling — consider class-specific rule for accent headings */
 
       ul {
         padding-left: 0;
@@ -237,12 +202,7 @@
 .faq-section {
   padding: 3rem 0;
 
-  h2 {
-    margin-bottom: 2rem;
-    color: #333;
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
+  /* TODO: removed local `h2` styling — use global `h2` */
 
   .faq-filter {
     margin-bottom: 2rem;
@@ -269,10 +229,7 @@
       padding: 1.5rem;
 
       .faq-question {
-        color: var(--accent-color);
-        margin-bottom: 0.75rem;
-        font-size: 1.1rem;
-        font-weight: 600;
+        /* TODO: removed direct heading styling; keep selector but review appearance. */
       }
 
       .faq-answer {
@@ -297,10 +254,7 @@
     border-left: 4px solid var(--primary-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
-    h3 {
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
+    /* TODO: removed local `h3` styling in contact CTA — prefer class-specific selector if required */
 
     p {
       color: #666;
@@ -317,66 +271,16 @@
   }
 }
 
-// Buttons
-.btn-primary, .btn-secondary, .btn-outline {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  transition: all 0.2s ease;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
+// Buttons: use global styles in src/styles.scss
 
 
 
 
 // Form Styles
-.contact-form {
-  .form-group {
-    margin-bottom: 1rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #333;
-      font-weight: 500;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-
-      &:focus {
-        outline: none;
-        border-color: var(--primary-color);
-      }
-    }
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-  }
-}
+/* contact-form: use global .contact-form rules in src/styles.scss */
 
 // Mobile responsive
 @media (max-width: 768px) {
-  .events-list .event-item {
-    flex-direction: column;
-    gap: 1rem;
-
-    .event-date-simple {
-      align-self: flex-start;
-    }
-  }
-
   .info-content {
     grid-template-columns: 1fr;
   }

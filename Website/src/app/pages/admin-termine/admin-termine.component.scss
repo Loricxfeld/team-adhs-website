@@ -8,10 +8,8 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    h2 {
-      margin-bottom: 2rem;
-      color: #333;
-    }
+    /* TODO: review local `h2` in admin-termine — prefer global `h2` or a class-specific selector */
+    /* TODO: h2 heading styles removed — use global h2 */
 
     .form-group {
       margin-bottom: 1.5rem;

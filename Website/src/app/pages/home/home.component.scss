@@ -110,10 +110,7 @@
       margin-bottom: 1rem;
     }
 
-    h3 {
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
+    /* TODO: review local `h3` in calendar card - consider using global headings or class-specific selectors */
 
     p {
       color: var(--text-secondary);
@@ -131,12 +128,7 @@
   padding: 4rem 0;
   background-color: var(--surface-color);
 
-  h3 {
-    // Nutzt .section-title
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--text-primary);
-  }
+  /* TODO: review local `h3` in social-section - consider global `h3` or section title class */
 
   .social-grid {
     display: grid;
@@ -183,12 +175,7 @@
       }
 
       .social-content {
-        h4 {
-          margin: 0 0 0.5rem 0;
-          color: var(--primary-color);
-          font-weight: 600;
-          transition: color 0.2s ease;
-        }
+        /* TODO: h4 heading styles removed — use global h4 */
 
         p {
           margin: 0;
@@ -245,13 +232,7 @@
   padding: 4rem 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 
-  h3 {
-    // Nutzt .section-title
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--text-primary);
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-  }
+  /* TODO: review local `h3` in partners-section - consider global `h3` or class-specific rule */
 
   .partners-grid {
     // Nutzt .section-grid-auto aus _sections.scss
@@ -273,11 +254,7 @@
         box-shadow: var(--shadow-medium);
       }
 
-      h4 {
-        color: var(--accent-color);
-        margin-bottom: 1rem;
-        font-size: 1.3rem;
-      }
+      /* TODO: review local `h4` in partner-card - consider class-specific selector */
 
       p {
         color: var(--text-primary);
