@@ -6,25 +6,36 @@
     <div class="contact-modal">
       <div class="contact-header">
         <h3>Unterstützung anfragen</h3>
-        <button (click)="closeContactForm()" class="close-btn">&times;</button>
+        <button (click)="closeContactForm()" class="close-btn" type="button" aria-label="Close">
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
-      <form (ngSubmit)="submitContactForm()" class="contact-form">
+      <form (ngSubmit)="submitContactForm()" class="contact-form form-section-group">
         <div class="form-group">
-          <label for="contact-email">E-Mail-Adresse *</label>
+          <label for="contact-email">
+            <mat-icon class="label-icon">email</mat-icon>
+            E-Mail-Adresse
+            <span class="required">*</span>
+          </label>
           <input type="email"
                  id="contact-email"
                  [(ngModel)]="contactForm.email"
                  name="email"
                  required
-                 placeholder="ihre@email.at">
+                 placeholder="ihre@email.at"
+                 class="form-input">
         </div>
         <div class="form-group">
-          <label for="contact-message">Ihre Situation / Fragen</label>
+          <label for="contact-message">
+            <mat-icon class="label-icon">message</mat-icon>
+            Ihre Situation / Fragen
+          </label>
           <textarea id="contact-message"
                     [(ngModel)]="contactForm.message"
                     name="message"
                     rows="4"
-                    placeholder="Beschreiben Sie gerne Ihre Situation oder stellen Sie konkrete Fragen..."></textarea>
+                    placeholder="Beschreiben Sie gerne Ihre Situation oder stellen Sie konkrete Fragen..."
+                    class="form-input"></textarea>
         </div>
         <div class="form-actions">
           <button type="button" (click)="closeContactForm()" class="btn-secondary">
@@ -33,6 +44,7 @@
           <button type="submit"
                   class="btn-primary"
                   [disabled]="isSubmittingContact || !contactForm.email.trim()">
+            <mat-icon *ngIf="!isSubmittingContact">send</mat-icon>
             {{ isSubmittingContact ? 'Wird gesendet...' : 'Nachricht senden' }}
           </button>
         </div>
@@ -70,22 +82,18 @@
       <h2>ADHS verstehen</h2>
       <div class="understanding-grid">
         <div class="understanding-item">
-          <div class="item-icon">🧠</div>
           <h3>Neurologische Besonderheit</h3>
           <p>ADHS ist eine neurobiologische Besonderheit, nicht fehlende Willenskraft oder Disziplin.</p>
         </div>
         <div class="understanding-item">
-          <div class="item-icon">🎯</div>
           <h3>Individuelle Ausprägungen</h3>
           <p>Jeder Mensch mit ADHS ist anders. Symptome und Stärken variieren stark.</p>
         </div>
         <div class="understanding-item">
-          <div class="item-icon">💪</div>
           <h3>Stärken und Herausforderungen</h3>
           <p>ADHS bringt sowohl Herausforderungen als auch besondere Stärken mit sich.</p>
         </div>
         <div class="understanding-item">
-          <div class="item-icon">🔄</div>
           <h3>Schwankende Tage</h3>
           <p>Gute und schlechte Tage wechseln sich ab - das ist völlig normal.</p>
         </div>
@@ -205,7 +213,6 @@
         </div>
 
         <div class="meeting-visual">
-          <div class="meeting-icon">👥</div>
           <p class="meeting-quote">"Der Austausch mit anderen Angehörigen hat mir sehr geholfen, mich weniger allein zu fühlen."</p>
         </div>
       </div>
@@ -280,25 +287,21 @@
 
         <div class="selfcare-tips">
           <div class="selfcare-tip">
-            <div class="tip-icon">🛡️</div>
             <h4>Grenzen setzen</h4>
             <p>Du kannst nicht alles lösen. Setze klare Grenzen und kommuniziere sie liebevoll aber bestimmt.</p>
           </div>
 
           <div class="selfcare-tip">
-            <div class="tip-icon">⏰</div>
             <h4>Auszeiten nehmen</h4>
             <p>Plane regelmäßig Zeit nur für Dich ein. Das ist nicht egoistisch, sondern notwendig.</p>
           </div>
 
           <div class="selfcare-tip">
-            <div class="tip-icon">🤝</div>
             <h4>Unterstützung holen</h4>
             <p>Scheue Dich nicht, selbst Hilfe zu suchen - bei Freunden, Familie oder professionell.</p>
           </div>
 
           <div class="selfcare-tip">
-            <div class="tip-icon">💝</div>
             <h4>Hobbys beibehalten</h4>
             <p>Behalte Deine eigenen Interessen und Aktivitäten bei. Sie sind wichtig für Dein Wohlbefinden.</p>
           </div>

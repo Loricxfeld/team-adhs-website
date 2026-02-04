@@ -576,6 +576,50 @@ h3 {
 }
 
 // ============================================
+// GRID LAYOUTS — Unified Grid System (Mixins)
+// ============================================
+@mixin grid-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+@mixin grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+@mixin grid-4col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+@mixin grid-auto {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1.5rem;
+}
+
+// Grid utility classes (for non-component use)
+.grid-2col {
+  @include grid-2col;
+}
+
+.grid-3col {
+  @include grid-3col;
+}
+
+.grid-4col {
+  @include grid-4col;
+}
+
+.grid-auto {
+  @include grid-auto;
+}
+
+// ============================================
 // FORM STYLES — Global Form Components
 // Classes: form-section, form-group, form-row, form-actions
 // ============================================

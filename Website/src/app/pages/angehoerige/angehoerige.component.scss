@@ -3,27 +3,188 @@
   min-height: 100vh;
 }
 
-// Contact Modal (gleich wie bei anderen Seiten)
+// Grid Mixins
+@mixin grid-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+@mixin grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+@mixin grid-auto {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1.5rem;
+}
+
+// Contact Modal
 .contact-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(2px);
 
   .contact-modal {
     background-color: white;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 12px;
     max-width: 500px;
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease-out;
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #f0f0f0;
+
+      h3 {
+        margin: 0;
+        color: var(--text-primary);
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        transition: all 0.2s ease;
+
+        mat-icon {
+          font-size: 1.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+
+        &:hover {
+          color: var(--primary-color);
+          transform: scale(1.1);
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+
+    .contact-form {
+      .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.75rem;
+          color: var(--text-primary);
+          font-weight: 500;
+          font-size: 0.95rem;
+
+          mat-icon {
+            font-size: 1.2rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            color: var(--accent-color);
+          }
+
+          .required {
+            color: var(--warn-color);
+            font-weight: bold;
+          }
+        }
+
+        .form-input {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          border: 2px solid #e0e0e0;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-family: inherit;
+          transition: all 0.2s ease;
+          background-color: #fafafa;
+
+          &:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
+          }
+
+          &:hover:not(:focus) {
+            border-color: #d0d0d0;
+          }
+
+          &::placeholder {
+            color: #bbb;
+          }
+
+          &:disabled {
+            background-color: #f5f5f5;
+            cursor: not-allowed;
+            opacity: 0.6;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 120px;
+          max-height: 300px;
+        }
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+
+        button {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          min-width: 120px;
+
+          mat-icon {
+            font-size: 1.1rem;
+            width: 1.1rem;
+            height: 1.1rem;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -67,10 +228,15 @@
   padding: 3rem 0;
   background-color: #f9f9f9;
 
+  h2 {
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   .understanding-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    @include grid-3col;
 
     .understanding-item {
       background-color: white;
@@ -78,13 +244,6 @@
       border-radius: 8px;
       text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-
-      .item-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-
-      /* TODO: removed local `h3` styling — if accent color is required, prefer a class-specific selector */
 
       p {
         color: #666;
@@ -98,6 +257,13 @@
 .support-tips-section {
   padding: 3rem 0;
 
+  h2 {
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   .tips-filter {
     margin-bottom: 2rem;
 
@@ -110,8 +276,7 @@
   }
 
   .tips-grid {
-    display: grid;
-    gap: 1.5rem;
+    @include grid-auto;
 
     .tip-card {
       background-color: #f9f9f9;
@@ -128,15 +293,8 @@
           background-color: #f0f0f0;
         }
 
-        .tip-icon {
-          font-size: 2rem;
-          margin-right: 1rem;
-          color: var(--primary-color);
-        }
-
         .tip-title-area {
           flex: 1;
-          /* TODO: h3 heading styles removed — use global h3 */
 
           .tip-description {
             color: #666;
@@ -154,7 +312,6 @@
       .tip-details {
         padding: 0 1.5rem 1.5rem;
         background-color: white;
-        /* TODO: h4 heading styles removed — use global h4 */
 
         ul {
           color: #555;
@@ -174,9 +331,15 @@
   padding: 3rem 0;
   background-color: #f9f9f9;
 
+  h2 {
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   .challenges-grid {
-    display: grid;
-    gap: 2rem;
+    @include grid-2col;
 
     .challenge-card {
       background-color: white;
@@ -186,11 +349,9 @@
 
       .challenge-problem {
         margin-bottom: 1.5rem;
-        /* TODO: h4 heading styles removed — use global h4 */
       }
 
       .challenge-solution {
-        /* TODO: h4 heading styles removed — use global h4 */
         p {
           color: #555;
           line-height: 1.5;
@@ -304,9 +465,7 @@
   }
 
   .resources-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    @include grid-2col;
 
     .resource-card {
       background-color: white;
@@ -320,11 +479,6 @@
         align-items: center;
         margin-bottom: 1rem;
 
-        .resource-icon {
-          font-size: 1.5rem;
-          color: var(--primary-color);
-        }
-
         .resource-type-badge {
           background-color: var(--accent-color);
           color: white;
@@ -335,8 +489,6 @@
       }
 
       .resource-content {
-        /* TODO: h3 heading styles removed — use global h3 */
-
         .resource-description {
           color: #666;
           line-height: 1.5;
@@ -367,10 +519,15 @@
 .selfcare-section {
   padding: 3rem 0;
 
+  h2 {
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   .selfcare-content {
     text-align: center;
-
-    /* TODO: h2 heading styles removed — use global h2 */
 
     .selfcare-intro {
       color: #666;
@@ -382,9 +539,7 @@
     }
 
     .selfcare-tips {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      @include grid-2col;
       margin-bottom: 2rem;
 
       .selfcare-tip {
@@ -392,11 +547,10 @@
         padding: 1.5rem;
         border-radius: 8px;
 
-        .tip-icon {
-          font-size: 2rem;
-          margin-bottom: 1rem;
+        h4 {
+          margin-top: 0;
+          margin-bottom: 0.5rem;
         }
-        /* TODO: h4 heading styles removed — use global h4 */
 
         p {
           color: #666;
