@@ -61,7 +61,7 @@
     <!-- Registration Required Notice -->
     <div class="registration-notice" *ngIf="event.requiresRegistration">
       <mat-icon>info</mat-icon>
-      <span>Anmeldung erforderlich unter kontakt@team-adhs.at</span>
+      <span>Anmeldung erforderlich unter kontakt&#64;team-adhs.at</span>
     </div>
   </div>
 
@@ -95,7 +95,7 @@
     <!-- Contact Email for Registration -->
     <a class="btn btn-outline"
        *ngIf="event.requiresRegistration"
-       href="mailto:kontakt@team-adhs.at?subject=Anmeldung {{ event.title }}&body=Hallo,%0D%0A%0D%0AIch möchte mich für folgendes Event anmelden:%0D%0A{{ event.title }}%0D%0AAm {{ event.date | date:'dd.MM.yyyy' }} um {{ event.date | date:'HH:mm' }} Uhr%0D%0A%0D%0AVielen Dank!"
+       href="mailto:kontakt&#64;team-adhs.at?subject=Anmeldung {{ event.title }}&body=Hallo,%0D%0A%0D%0AIch möchte mich für folgendes Event anmelden:%0D%0A{{ event.title }}%0D%0AAm {{ event.date | date:'dd.MM.yyyy' }} um {{ event.date | date:'HH:mm' }} Uhr%0D%0A%0D%0AVielen Dank!"
        title="Per E-Mail anmelden">
       <mat-icon>email</mat-icon>
       E-Mail
