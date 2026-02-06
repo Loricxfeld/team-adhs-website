@@ -56,10 +56,6 @@
       padding-bottom: 1rem;
       border-bottom: 2px solid #f0f0f0;
 
-      h3 {
-        margin: 0;
-        color: var(--text-primary);
-      }
 
       .close-btn {
         background: none;
@@ -184,7 +180,6 @@
   background-color: white;
   border-bottom: 1px solid #eee;
 
-  /* TODO: removed local `h1` styling — use global `h1` or add a class-specific selector if needed */
 
   p {
     color: #666;
@@ -199,12 +194,6 @@
   padding: 3rem 0;
   background-color: #f9f9f9;
 
-  h2 {
-    margin-bottom: 2rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
 
   .benefits-grid {
     @include grid-3col;
@@ -234,12 +223,6 @@
 .groups-section {
   padding: 3rem 0;
 
-  h2 {
-    margin-bottom: 2rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
 }
 
 // Info Section
@@ -278,7 +261,6 @@
         }
 
         .step-content {
-          /* TODO: removed local `h4` styling — consider class-specific selector if needed */
 
           p {
             color: #666;
@@ -296,7 +278,6 @@
       border-left: 4px solid var(--primary-color);
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
-      /* TODO: removed local `h3` styling — consider class-specific rule for accent headings */
 
       ul {
         padding-left: 0;
@@ -330,7 +311,6 @@
 .faq-section {
   padding: 3rem 0;
 
-  /* TODO: removed local `h2` styling — use global `h2` */
 
   .faq-filter {
     margin-bottom: 2rem;
@@ -382,7 +362,6 @@
     border-left: 4px solid var(--primary-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
-    /* TODO: removed local `h3` styling in contact CTA — prefer class-specific selector if required */
 
     p {
       color: #666;
