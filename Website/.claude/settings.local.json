@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: update Angular config paths for Website directory\n\n- Set root to \"Website\"\n- Set sourceRoot to \"Website/src\"\n- Update all paths to include Website/ prefix\n- Add buildTarget to serve configuration\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

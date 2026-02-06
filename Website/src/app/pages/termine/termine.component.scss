@@ -11,7 +11,6 @@
   background-color: white;
   border-bottom: 1px solid #eee;
 
-  /* TODO: removed local `h1` rules — use global `h1` in src/styles.scss.
      If a different appearance is required for `.page-header`, add a
      class-specific rule like `.page-header .title { ... }` instead. */
 
@@ -98,7 +97,6 @@
   background-color: #f9f9f9;
 
   .regular-meetings {
-    /* TODO: removed local `h2` rules — rely on global `h2`. */
 
     .meeting-item {
       background-color: white;
@@ -108,7 +106,6 @@
       border-left: 4px solid var(--primary-color);
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
-      /* TODO: removed local `h4` rules — if accent color is important,
          consider using a class like `.meeting-item__title` with the color. */
 
       p {
@@ -152,14 +149,12 @@
 
   .page-header {
     padding: 1.5rem 0;
-    /* TODO: h1 responsive override removed — use global h1 */
   }
 }
 @media (max-width: 768px) {
   // Page Header mobile
   .page-header {
     padding: 1.5rem 0;
-    /* TODO: h1 responsive override removed — use global h1 */
 
     p {
       font-size: 0.95rem;
